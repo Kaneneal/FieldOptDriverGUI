@@ -45,7 +45,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -301,7 +301,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="modTypeComboBox">
+            <widget class="QComboBox" name="modelTypeComboBox">
              <property name="minimumSize">
               <size>
                <width>250</width>
@@ -678,7 +678,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -1209,7 +1209,7 @@
   <tabstop>globalBrowseButton</tabstop>
   <tabstop>globalRadioButtonY</tabstop>
   <tabstop>globalRadioButtonN</tabstop>
-  <tabstop>modTypeComboBox</tabstop>
+  <tabstop>modelTypeComboBox</tabstop>
   <tabstop>simTypeComboBox</tabstop>
   <tabstop>simChooseCommButton</tabstop>
   <tabstop>simPathEdit</tabstop>
