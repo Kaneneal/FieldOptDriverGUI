@@ -43,7 +43,8 @@ void MainWindow::setupMainWindow(){
     ui->tabWidget->setCurrentIndex(0); //!< Sets the initial tab to be the global tab
     ui->optTypeLine->setText(ui->optTypeComboBox->currentText());
 
-    settings_ = new Utilities::Settings::Settings("/home/karolinr/Documents/FieldOpt-master/FieldOpt/GTest/Utilities/driver/driver.json", "/home/karolinr");
+    settings_ = new Utilities::Settings::Settings("/home/karolinr/Documents/GitHub/FieldOpt/FieldOpt/GTest/Utilities/driver/driver.json", "/home/karolinr");
+
 }
 
 void MainWindow::setupDialogs(){
@@ -62,6 +63,7 @@ void MainWindow::setupAboutDialog(){
 }
 
 
+//----------Design GUI methods ---------------------------------------------------------------------------|
 /*!
  * \brief MainWindow::setToolTips
  * Setting all the tool tips for everything in mainwindow
@@ -133,7 +135,7 @@ void MainWindow::connectAllStuff(){
     connect( ui->globalPathEdit, SIGNAL(textChanged(QString)), ui->globalOutputPathLine, SLOT(setText(QString)) );
     connect( ui->simPathEdit, SIGNAL(textChanged(QString)), ui->simDriverPathLine, SLOT(setText(QString)) );
     connect( ui->modelPathEdit, SIGNAL(textChanged(QString)), ui->modelGridPathLine, SLOT(setText(QString)) );
-    connect( ui->optTypeComboBox, SIGNAL(activated(QString)), ui->optTypeLine, SLOT(setText(QString)) );
+    connect( ui->optTypeComboBox, SIGNAL(currentTextChanged(QString)), ui->optTypeLine, SLOT(setText(QString)) );
 
     //Connect edit-buttons to browse buttons
     connect( ui->globalOutputPathEditButton, SIGNAL(clicked(bool)), ui->globalBrowseButton, SLOT(click()));
@@ -142,6 +144,30 @@ void MainWindow::connectAllStuff(){
     connect( ui->jsonPathEditButton, SIGNAL(clicked(bool)), ui->actionOpen_JSON_file, SLOT(trigger()));
 
 }
+
+void MainWindow::fixIconOnButton(){
+    //kan sikkert arrangere dette annerledes, men forløpig slik
+    QPixmap pixmap(":/Images/pensil");
+    QIcon EditIcon(pixmap);
+    ui->globalOutputPathEditButton->setIcon(EditIcon);
+    ui->globalOutputPathEditButton->setIconSize(QSize(27,27));//pixmap.rect().size());
+   // ui->globalOutputPathEditButton->setFixedSize(QSize(27,27)); Satt i GUI - sette her også?
+
+    ui->modelGridPathEditButton->setIcon(EditIcon);
+    ui->modelGridPathEditButton->setIconSize(QSize(25,25));
+
+    ui->simDriverPathEditButton->setIcon(EditIcon);
+    ui->simDriverPathEditButton->setIconSize(QSize(25,25));//pixmap.rect().size());
+
+    ui->optTypeEditButton->setIcon(EditIcon);
+    ui->optTypeEditButton->setIconSize(QSize(25,25));
+
+    ui->jsonPathEditButton->setIcon(EditIcon);
+    ui->jsonPathEditButton->setIconSize(QSize(25,25));
+}
+
+
+//---------- END Design GUI methods ----------------------------------------------------------------------|
 
 void MainWindow::saveJSONfile(){
     updateAllParameters();
@@ -152,7 +178,7 @@ void MainWindow::saveJSONfile(){
     QMessageBox::information(this, "Save", "You have now saved (and/or updated) the JSON file.", QMessageBox::Ok, 0 );
 }
 
-void MainWindow::updateAllParameters(){
+void MainWindow::updateAllParameters(){ // Fra GUI ut til Settings
 
     //sets the global parameters
 //    global.set_name(ui->globalNameEdit->text());
@@ -202,29 +228,12 @@ void MainWindow::updateAllParameters(){
 
 }
 
-void MainWindow::fixIconOnButton(){
-    //kan sikkert arrangere dette annerledes, men forløpig slik
-    QPixmap pixmap(":/Images/pensil");
-    QIcon EditIcon(pixmap);
-    ui->globalOutputPathEditButton->setIcon(EditIcon);
-    ui->globalOutputPathEditButton->setIconSize(QSize(27,27));//pixmap.rect().size());
-   // ui->globalOutputPathEditButton->setFixedSize(QSize(27,27)); Satt i GUI - sette her også?
-
-    ui->modelGridPathEditButton->setIcon(EditIcon);
-    ui->modelGridPathEditButton->setIconSize(QSize(25,25));
-
-    ui->simDriverPathEditButton->setIcon(EditIcon);
-    ui->simDriverPathEditButton->setIconSize(QSize(25,25));//pixmap.rect().size());
-
-    ui->optTypeEditButton->setIcon(EditIcon);
-    ui->optTypeEditButton->setIconSize(QSize(25,25));
-
-    ui->jsonPathEditButton->setIcon(EditIcon);
-    ui->jsonPathEditButton->setIconSize(QSize(25,25));
+void MainWindow::importJSONfile(){
+    setGlobalVariables();
+    setModelVariables();
+    setSimulatorVariables();
+    setOptimizerVariables();
 }
-
-
-
 
 //------------- global actions ------------------------------------------------------------------------------------------------------|
 
@@ -355,7 +364,6 @@ void MainWindow::on_actionNew_JSON_file_opens_a_new_window_triggered(){
         //opprett instanse av denne mainwindow - mer komplisert enn jeg tenkte , tror jeg... siden d ikke eksisterer kode til det nye vinduet - variablene som skal settes
 }
 
-
 //Import/open JSON file
 void MainWindow::on_actionOpen_JSON_file_triggered(){
 
@@ -374,9 +382,9 @@ void MainWindow::on_actionOpen_JSON_file_triggered(){
       }
        // Need to disable json line stuff, when no text there (deleted or regret choosing a json file), when you create a new json file here, the json position will be the same as output path?
 
-    //  settings_ = new Utilities::Settings::Settings(ui->jsonPathLine->text(), ui->globalPathEdit->text()); Skal endre og uncommente senere
+    //  settings_ = new Utilities::Settings::Settings(ui->jsonPathLine->text(), ui->globalPathEdit->text()); // Skal endre og uncommente senere
 
-      //importJSONFile(); nonexisting
+      importJSONfile();
 }
 
 
@@ -415,3 +423,55 @@ void MainWindow::on_actionAbout_triggered(){
 //------------- END MENU actions ----------------------------------------------------------------------------------------------------------|
 
 
+//------Set/show-in-GUI methods -----------------------------------------------------------------------------------------------------------|
+
+void MainWindow::setGlobalVariables(){
+    ui->globalNameEdit->setText(settings_->name());
+    ui->globalPathEdit->setText(settings_->output_directory());
+    ui->globalRadioButtonY->setChecked(settings_->verbose()); //if verbose is true, radio button yes is checked
+}
+
+void MainWindow::setModelVariables(){
+    switch (settings_->model()->reservoir().type) { //more types?
+    case ::Utilities::Settings::Model::ReservoirGridSourceType::ECLIPSE:
+        // set ui string value
+        ui->modelTypeComboBox->setCurrentText("ECLIPSE");
+        //test if the combo box contains the chosen reservoir grid source type, if not, addItem to the list (and make it currentItem) (for to run through the list)
+        break;
+    default:
+        //Initial type ECLIPSE?
+        break;
+    }
+
+    ui->modelPathEdit->setText(settings_->model()->reservoir().path);
+}
+
+void MainWindow::setSimulatorVariables(){
+    switch (settings_->simulator()->type()) { //more types?
+    case ::Utilities::Settings::Simulator::SimulatorType::ECLIPSE:
+        // set ui string value
+        ui->simTypeComboBox->setCurrentText("ECLIPSE");
+        //test if the combo box contains the chosen simulator type, if not, addItem to the list (and make it currentItem) (for to run through the list)
+        break;
+    default:
+        //Initial type (ECLIPSE?)
+        break;
+    }
+    ui->simPathEdit->setText(settings_->simulator()->driver_file_path());
+
+}
+
+void MainWindow::setOptimizerVariables(){
+    switch (settings_->optimizer()->type()) {
+    case ::Utilities::Settings::Optimizer::OptimizerType::Compass:
+        // set ui string value
+        ui->optTypeComboBox->setCurrentText("Compass");
+        //test if the combo box contains the chosen optimizer type, if not, addItem to the list (and make it currentItem) (for to run through the list)
+        break;
+    default:
+        //initial type (Compass?)
+        break;
+    }
+}
+
+//------ END Set/show-in-GUI methods ------------------------------------------------------------------------------------------------------|
