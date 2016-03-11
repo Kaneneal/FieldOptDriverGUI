@@ -101,6 +101,16 @@ private slots:
 
     void on_optSetConstraintsButton_clicked(); //!<
 
+    void importJSONfile(); //!< Gather and runs all the set/show-in-GUI functions
+
+    void setGlobalVariables();
+
+    void setModelVariables();
+
+    void setSimulatorVariables();
+
+    void setOptimizerVariables();
+
 private:
     Ui::MainWindow *ui; //!<
     QFileDialog *browseFileDialog; //!< file dialog used to find the file path - output place and driver path
