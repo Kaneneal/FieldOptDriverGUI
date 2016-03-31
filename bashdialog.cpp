@@ -3,13 +3,13 @@
 
 #include <QtCore>
 
+
 BashDialog::BashDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::BashDialog){
 
     setupBashDialog(); //!< Setup for the uiDialog and sets window title
     fixToolTips();
-    ui->bashCutomLineEdit->setPlaceholderText("Enter customized BASH command");
 
 }
 
@@ -24,6 +24,8 @@ BashDialog::~BashDialog(){
 void BashDialog::setupBashDialog(){
     ui->setupUi(this);
     this->setWindowTitle("BASH Commands");
+    ui->bashCutomLineEdit->setPlaceholderText("Enter customized BASH command");
+
 }
 
 void BashDialog::updateBashDialog(){
@@ -38,10 +40,13 @@ void BashDialog::fixToolTips(){
 
 void BashDialog::on_buttonBox_accepted(){
     // update QList run through tempList and add to existing bashComList if not already existing
+        qDebug() << "Clicked 'OK' in the Bash dialog.";
 }
 
 void BashDialog::on_buttonBox_rejected(){
     //tempList.clear - empty it
+    qDebug() << "Clicked 'Cancel' in the Bash dialog.";
+
 }
 
 void BashDialog::on_addItemBashListButton_clicked(){
@@ -81,7 +86,6 @@ void BashDialog::on_removeItemBashListButton_clicked(){
         ui->bashExampleListWidget->setCurrentItem(exItems.at(0)); //!<Set the current item to the former
         ui->bashExampleListWidget->currentItem()->setHidden(false);
     }
-
 
     //then delete from the bashList
     delete bashItem;

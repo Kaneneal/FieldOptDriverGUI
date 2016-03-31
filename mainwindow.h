@@ -14,18 +14,11 @@
 //bash dialog headers
 #include "bashdialog.h"
 #include "mwelldialog.h"
-#include "optdialog.h"
+#include "optparametersdialog.h"
+#include "optconstraintdialog.h"
+#include "optobjectivedialog.h"
 
 #include "ui_aboutdialog.h"
-
-//namespace Utilities {
-//namespace Settings {
-//class Settings;
-//class Optimizer;
-//class Simulator;
-//class Model;
-//}
-//}
 
 
 namespace Ui {
@@ -111,12 +104,15 @@ private slots:
 
     void setOptimizerVariables();
 
+    void closeEvent (QCloseEvent *event);
+
 private:
     Ui::MainWindow *ui; //!<
     QFileDialog *browseFileDialog; //!< file dialog used to find the file path - output place and driver path
     QApplication *app;             //!< application - need for f.ex. closing the application
 
     BashDialog *bashDialog; //!<
+
     Utilities::Settings::Settings *settings_; //!<
 
     Ui::AboutDialog *uiAbout; //!<
@@ -124,7 +120,9 @@ private:
 
     MWellDialog *mWellDialog; //!<
 
-    OptDialog *optDialog; //!<
+    OptParametersDialog *optParametersDialog; //!<
+    OptConstraintDialog *optConstraintDialog; //!<
+    OptObjectiveDialog *optObjectiveDialog; //!<
 
   //  QDeclarativeView fieldOptLogo;
 

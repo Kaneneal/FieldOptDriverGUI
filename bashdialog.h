@@ -2,6 +2,7 @@
 #define BASHDIALOG_H
 
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui {
 class BashDialog;

@@ -14,7 +14,7 @@
 #include <QDebug>
 
 #include <QApplication> // to be able to exit, close program
-
+#include <QCloseEvent> //to be able to manipulate the reject/x, close on the main window
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
@@ -32,8 +32,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow(){
     delete ui;
-    delete bashDialog; //Have to delete it, since bashDialog is set up modelless (can move back and forth between windows/dialogs)
-    delete mWellDialog;
+    //delete bashDialog; //Have to delete it, since bashDialog is set up modelless (can move back and forth between windows/dialogs), no need to cause do not create ui's here
+   // delete mWellDialog; //trenger ikke å fjerne på denne måten
 }
 
 void MainWindow::setupMainWindow(){
@@ -50,7 +50,9 @@ void MainWindow::setupMainWindow(){
 void MainWindow::setupDialogs(){
     bashDialog = new BashDialog();
     mWellDialog = new MWellDialog();
-    optDialog = new OptDialog();
+    optParametersDialog = new OptParametersDialog();
+    optConstraintDialog = new OptConstraintDialog();
+    optObjectiveDialog = new OptObjectiveDialog();
     setupAboutDialog(); //!< Set ups the "About FieldOpt" dialog
 
 }
@@ -76,9 +78,6 @@ void MainWindow::setToolTips(){
 
     ui->globalOutputPathLine->setToolTip("Path to the output files");
     ui->globalOutputPathEditButton->setToolTip("Edit path");
-
-    ui->globalRadioButtonY->setToolTip("Yes - show detailed debugging output");
-    ui->globalRadioButtonN->setToolTip("No - do not show detailed debugging output");
 
     //Model - tool tip
     ui->modelPathEdit->setToolTip("Path - Location for the grid file");
@@ -329,8 +328,8 @@ void MainWindow::on_optSetParametersButton_clicked(){
        // optParametersDialog = new QDialog();
        // uiParameters->setupUi(optParametersDialog);
        // mWellVariablesDialog->setWindowTitle("Model - Well - Variables");
-    optDialog->getOptParametersDialog()->setModal(true);
-    optDialog->getOptParametersDialog()->exec();
+    optParametersDialog->setModal(true);
+    optParametersDialog->exec();
 }
 
 void MainWindow::on_optSetObjectiveButton_clicked(){
@@ -338,17 +337,16 @@ void MainWindow::on_optSetObjectiveButton_clicked(){
       //  optObjectiveDialog = new QDialog();
       //  uiObjective->setupUi(optObjectiveDialog);
      //   optObjectiveDialog->setWindowTitle("Model - Well - Variables");
-    optDialog->getOptObjectiveDialog()->setModal(true);
-    optDialog->getOptObjectiveDialog()->exec();
+    optObjectiveDialog->setModal(true);
+    optObjectiveDialog->exec();
+
+    //hvordan fikser dette... når klikker så må det lages en ny dialog? eller kan den allerede være laget
+    // og deretter sette modellen = true...
 }
 
 void MainWindow::on_optSetConstraintsButton_clicked(){
-   //     uiConstraints = new Ui::OptConstraintsDialog;
-   //     optConstraintsDialog = new QDialog();
-   //     uiConstraints->setupUi(optConstraintsDialog);
-   //     optConstraintsDialog->setWindowTitle("Model - Well - Variables");
-    optDialog->getOptConstraintsDialog()->setModal(true);
-    optDialog->getOptConstraintsDialog()->exec();
+    optConstraintDialog->setModal(true);
+    optConstraintDialog->exec();
 }
 
 //-------------END optimizer actions-------------------------------------------------------------------------------------------------|
@@ -375,7 +373,7 @@ void MainWindow::on_actionOpen_JSON_file_triggered(){
     // browseFileDialog.setLabelText (QFileDialog::Accept, "Import" );//!< Sets the button text to "Import" in the file dialog må kjøres egen .exec for å kjøre denne spesielle
       QString tempPreJSONPath = browseFileDialog->getOpenFileName(this, tr("Choose JSON file to import"), "/home", tr("JSON (*.json)"));
 
-      if(!tempPreJSONPath.isNull()){       //!< if you chose a path with the file dialog, the line edit is changed. If not, nothing happens
+      if(!tempPreJSONPath.isEmpty()){       //!< if you chose a path with the file dialog, the line edit is changed. If not, nothing happens
         ui->jsonPathLine->setText(tempPreJSONPath);
         ui->jsonPathLine->setEnabled(true);
         ui->jsonPathLabel->setEnabled(true);
@@ -401,13 +399,15 @@ void MainWindow::on_actionExit_triggered(){
 
 QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Close this program?", "Are you sure you want to quit?", QMessageBox::Yes|QMessageBox::No);
-  if (reply == QMessageBox::Yes) {
-      qDebug() << "Yes was clicked";
-      app->quit();
+    if (reply == QMessageBox::Yes) {
+        qDebug() << "Yes was clicked";
+        app->quit();
+        //delete all ui's: solution: it does it with app->quit()
+    }
+ else {
+     qDebug() << "Yes was *not* clicked";
   }
-  else {
-      qDebug() << "Yes was *not* clicked";
-  }
+
 }
 
 //About FieldOpt
@@ -415,9 +415,24 @@ void MainWindow::on_actionAbout_triggered(){
    //aboutDialog->show();
    //aboutDialog->raise();
    //aboutDialog->activateWindow();
-
    aboutDialog->setModal(true);
    aboutDialog->exec();
+}
+
+
+void MainWindow::closeEvent (QCloseEvent *event){
+    //check if saved... if not, ask if you want to save. then ->
+
+    QMessageBox::StandardButton replyBtn;
+    replyBtn= QMessageBox::question( this, "FieldOpt", tr("Are you sure you want to quit?\n"), QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+    if (replyBtn != QMessageBox::Yes) {
+        event->ignore();
+    } else {
+        event->accept();
+        //delete all ui's
+        //extra ? app->close()?
+       app->closeAllWindows();
+    }
 }
 
 //------------- END MENU actions ----------------------------------------------------------------------------------------------------------|
@@ -428,7 +443,8 @@ void MainWindow::on_actionAbout_triggered(){
 void MainWindow::setGlobalVariables(){
     ui->globalNameEdit->setText(settings_->name());
     ui->globalPathEdit->setText(settings_->output_directory());
-    ui->globalRadioButtonY->setChecked(settings_->verbose()); //if verbose is true, radio button yes is checked
+    //default use a setter instead of... settings_->bookkeeper_tolerance()= 0.0;
+    //check if bookkeeper_tolerance is set, if not default = 0.0
 }
 
 void MainWindow::setModelVariables(){
@@ -472,6 +488,24 @@ void MainWindow::setOptimizerVariables(){
         //initial type (Compass?)
         break;
     }
+
+    switch (settings_->optimizer()->mode()){
+    case ::Utilities::Settings::Optimizer::OptimizerMode::Maximize:
+        ui->optModeComboBox->setCurrentText("Maximize");
+        break;
+    case ::Utilities::Settings::Optimizer::OptimizerMode::Minimize:
+        ui->optModeComboBox->setCurrentText("Minimize");
+        break;
+    default:
+        ui->optModeComboBox->setCurrentText("Maximize");
+        break;
+    }
+
+    // create getters for these variables???? ->
+    optParametersDialog->setOptParametersVariables(settings_->optimizer()->parameters().max_evaluations, settings_->optimizer()->parameters().initial_step_length, settings_->optimizer()->parameters().minimum_step_length);
+    optObjectiveDialog->setOptObjectiveType(settings_->optimizer()->objective().type); //possible change to ->getType()
+
+
 }
 
 //------ END Set/show-in-GUI methods ------------------------------------------------------------------------------------------------------|

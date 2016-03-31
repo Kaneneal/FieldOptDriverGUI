@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MWellControlDialog</class>
- <widget class="QDialog" name="MWellControlDialog">
+ <class>ModWellControlsDialog</class>
+ <widget class="QDialog" name="ModWellControlsDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -242,7 +242,7 @@
   <connection>
    <sender>wellControlButtonBox</sender>
    <signal>accepted()</signal>
-   <receiver>MWellControlDialog</receiver>
+   <receiver>ModWellControlsDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -258,7 +258,7 @@
   <connection>
    <sender>wellControlButtonBox</sender>
    <signal>rejected()</signal>
-   <receiver>MWellControlDialog</receiver>
+   <receiver>ModWellControlsDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

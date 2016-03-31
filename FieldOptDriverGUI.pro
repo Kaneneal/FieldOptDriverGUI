@@ -14,25 +14,35 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    optdialog.cpp \
     mwelldialog.cpp \
-    bashdialog.cpp
+    bashdialog.cpp \
+    modwellcompletionsdialog.cpp \
+    modwellcontrolsdialog.cpp \
+    modwellvariablesdialog.cpp \
+    optparametersdialog.cpp \
+    optconstraintdialog.cpp \
+    optobjectivedialog.cpp
 
 HEADERS  += mainwindow.h \
-    optdialog.h \
     mwelldialog.h \
-    bashdialog.h
+    bashdialog.h \
+    modwellcompletionsdialog.h \
+    modwellcontrolsdialog.h \
+    modwellvariablesdialog.h \
+    optparametersdialog.h \
+    optconstraintdialog.h \
+    optobjectivedialog.h
 
 FORMS    += mainwindow.ui \
-    optparametersdialog.ui \
-    optobjetivedialog.ui \
-    optconstraintsdialog.ui \
-    mwellvariablesdialog.ui \
     mwelldialog.ui \
-    mwellcontroldialog.ui \
-    mwellcompletionsdialog.ui \
     bashdialog.ui \
-    aboutdialog.ui
+    aboutdialog.ui \
+    modwellcompletionsdialog.ui \
+    modwellcontrolsdialog.ui \
+    modwellvariablesdialog.ui \
+    optconstraintdialog.ui \
+    optparametersdialog.ui \
+    optobjectivedialog.ui
 
 RESOURCES += \
     myres.qrc

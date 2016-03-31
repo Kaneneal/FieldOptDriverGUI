@@ -45,7 +45,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -64,19 +64,6 @@
         <property name="geometry">
          <rect>
           <x>400</x>
-          <y>10</y>
-          <width>16</width>
-          <height>91</height>
-         </rect>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-       <widget class="Line" name="globalLine_2">
-        <property name="geometry">
-         <rect>
-          <x>580</x>
           <y>10</y>
           <width>16</width>
           <height>91</height>
@@ -165,45 +152,41 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>430</x>
+          <x>830</x>
           <y>20</y>
-          <width>124</width>
-          <height>54</height>
+          <width>171</width>
+          <height>17</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="VerboseHorizontalLayout_13">
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Verbose:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
-           <item>
-            <widget class="QRadioButton" name="globalRadioButtonY">
-             <property name="text">
-              <string>Yes</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QRadioButton" name="globalRadioButtonN">
-             <property name="text">
-              <string>No</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
+        <property name="text">
+         <string>Bookkeeping tolerance:</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>20</y>
+          <width>141</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Bookkeeping?</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox">
+        <property name="geometry">
+         <rect>
+          <x>870</x>
+          <y>50</y>
+          <width>69</width>
+          <height>27</height>
+         </rect>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="modelTab">
@@ -546,67 +529,11 @@
        <attribute name="title">
         <string>Optimizer</string>
        </attribute>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>308</width>
-          <height>29</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QLabel" name="label_9">
-           <property name="minimumSize">
-            <size>
-             <width>100</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Type:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="optTypeComboBox">
-           <property name="minimumSize">
-            <size>
-             <width>200</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::WheelFocus</enum>
-           </property>
-           <property name="frame">
-            <bool>true</bool>
-           </property>
-           <item>
-            <property name="text">
-             <string>Compass</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>test1</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>test2</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
        <widget class="QPushButton" name="optSetParametersButton">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>60</y>
+          <x>380</x>
+          <y>20</y>
           <width>200</width>
           <height>27</height>
          </rect>
@@ -624,7 +551,7 @@
        <widget class="QPushButton" name="optSetObjectiveButton">
         <property name="geometry">
          <rect>
-          <x>360</x>
+          <x>600</x>
           <y>20</y>
           <width>200</width>
           <height>27</height>
@@ -643,8 +570,8 @@
        <widget class="QPushButton" name="optSetConstraintsButton">
         <property name="geometry">
          <rect>
-          <x>360</x>
-          <y>60</y>
+          <x>810</x>
+          <y>20</y>
           <width>200</width>
           <height>27</height>
          </rect>
@@ -658,6 +585,140 @@
         <property name="text">
          <string>Set Constraints...</string>
         </property>
+       </widget>
+       <widget class="Line" name="line">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>10</y>
+          <width>20</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>291</width>
+          <height>66</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_9">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>27</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>80</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Type:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="optTypeComboBox">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::WheelFocus</enum>
+             </property>
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>Compass</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>test1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>test2</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>27</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>80</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Mode:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="optModeComboBox">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>27</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>Maximize</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Minimize</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
       </widget>
      </widget>
@@ -684,7 +745,7 @@
            <x>10</x>
            <y>10</y>
            <width>491</width>
-           <height>141</height>
+           <height>138</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -731,12 +792,12 @@
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>0</height>
+                  <height>27</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>16777215</width>
+                  <width>346</width>
                   <height>16777215</height>
                  </size>
                 </property>
@@ -831,7 +892,13 @@
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>0</height>
+                  <height>27</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>346</width>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="frame">
@@ -904,7 +971,13 @@
                 <property name="minimumSize">
                  <size>
                   <width>200</width>
-                  <height>0</height>
+                  <height>27</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>346</width>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="frame">
@@ -982,7 +1055,13 @@
               <property name="minimumSize">
                <size>
                 <width>200</width>
-                <height>0</height>
+                <height>27</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>346</width>
+                <height>16777215</height>
                </size>
               </property>
               <property name="frame">
@@ -1207,8 +1286,6 @@
   <tabstop>globalNameEdit</tabstop>
   <tabstop>globalPathEdit</tabstop>
   <tabstop>globalBrowseButton</tabstop>
-  <tabstop>globalRadioButtonY</tabstop>
-  <tabstop>globalRadioButtonN</tabstop>
   <tabstop>modelTypeComboBox</tabstop>
   <tabstop>simTypeComboBox</tabstop>
   <tabstop>simChooseCommButton</tabstop>

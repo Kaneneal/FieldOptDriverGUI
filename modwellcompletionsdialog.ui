@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MWellCompletionsDialog</class>
- <widget class="QDialog" name="MWellCompletionsDialog">
+ <class>ModWellCompletionsDialog</class>
+ <widget class="QDialog" name="ModWellCompletionsDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -141,7 +141,7 @@
     </spacer>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
+    <widget class="QDialogButtonBox" name="modWellCompletionButtonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -155,9 +155,9 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>modWellCompletionButtonBox</sender>
    <signal>accepted()</signal>
-   <receiver>MWellCompletionsDialog</receiver>
+   <receiver>ModWellCompletionsDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -171,9 +171,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>modWellCompletionButtonBox</sender>
    <signal>rejected()</signal>
-   <receiver>MWellCompletionsDialog</receiver>
+   <receiver>ModWellCompletionsDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

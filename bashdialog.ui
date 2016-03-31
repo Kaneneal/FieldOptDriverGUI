@@ -109,6 +109,11 @@
          </property>
          <item>
           <property name="text">
+           <string>tcsh -c \&quot;eval source ~/.cshrc; eclrun eclipse\&quot;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>eclrun ecplise $FILE</string>
           </property>
          </item>

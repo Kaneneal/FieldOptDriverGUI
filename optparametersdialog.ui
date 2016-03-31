@@ -29,12 +29,12 @@
             </size>
            </property>
            <property name="text">
-            <string>Max vaulations:</string>
+            <string>Max evaulations:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spinBox">
+          <widget class="QSpinBox" name="paramMaxEvalSpinBox">
            <property name="minimumSize">
             <size>
              <width>69</width>
@@ -61,7 +61,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+          <widget class="QDoubleSpinBox" name="paramInitStepdoubleSpinBox">
            <property name="decimals">
             <number>1</number>
            </property>
@@ -88,7 +88,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QDoubleSpinBox" name="doubleSpinBox">
+          <widget class="QDoubleSpinBox" name="paramMinStepdoubleSpinBox">
            <property name="decimals">
             <number>1</number>
            </property>

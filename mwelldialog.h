@@ -2,9 +2,11 @@
 #define MWELLDIALOG_H
 
 #include <QDialog>
-#include "ui_mwellcontroldialog.h"
-#include "ui_mwellcompletionsdialog.h"
-#include "ui_mwellvariablesdialog.h"
+#include <QDebug>
+
+#include "modwellcompletionsdialog.h"
+#include "modwellcontrolsdialog.h"
+#include "modwellvariablesdialog.h"
 
 namespace Ui {
 class MWellDialog;
@@ -27,19 +29,7 @@ public:
 
 private slots:
 
-    void on_mWellControlButtonBox_accepted(); //!<
-
-    void on_mWellControlButtonBox_rejected(); //!<
-
-    void on_mWellControlModeComboBox_currentTextChanged(const QString &arg1); //!<
-
-    void setupMWellDialog(); //!< ui->setupUI(QDialog) for Well
-
-    void setupMWellControlDialog(); //!< ui->setupUI(QDialog) for Controls
-
-    void setupMWellCompletionsDialog(); //!< ui->setupUI(QDialog) for Completions
-
-    void setupMWellVariablesDialog(); //!< ui->setupUI(QDialog) for Variables
+    void setupMWellDialogs(); //!< ui->setupUI(QDialog) for Well, ui->setupUI(QDialog) for Controls and Variables
 
     void on_mWellSetControlsButton_clicked();
 
@@ -51,17 +41,16 @@ private slots:
 
     void on_mWellSetVariablesButton_clicked();
 
+    void on_buttonBox_accepted();
+
+    void on_buttonBox_rejected();
+
 private:
-    Ui::MWellDialog *ui;
+    Ui::MWellDialog *uiModWell;
 
-    Ui::MWellControlDialog *uiControl;
-    QDialog *mWellControlDialog;
-
-    Ui::MWellCompletionsDialog *uiCompletions;
-    QDialog *mWellCompletionsDialog;
-
-    Ui::MWellVariablesDialog *uiVariables;
-    QDialog *mWellVariablesDialog;
+   ModWellCompletionsDialog *mWellCompletionsDialog;
+   ModWellControlsDialog *mWellControlsDialog;
+   ModWellVariablesDialog *mWellVariablesDialog;
 
 };
 
