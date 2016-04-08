@@ -12,10 +12,10 @@ OptParametersDialog::~OptParametersDialog(){
     delete uiOptParameters;
 }
 
-void OptParametersDialog::setOptParametersVariables(int max_evaluations, double initial_step_length, double minimum_step_length){
-    uiOptParameters->paramMaxEvalSpinBox->setValue(max_evaluations);
-    uiOptParameters->paramInitStepdoubleSpinBox->setValue(initial_step_length);
-    uiOptParameters->paramMinStepdoubleSpinBox->setValue(minimum_step_length);
+void OptParametersDialog::setOptParametersVariables(Utilities::Settings::Optimizer::Parameters parameters){
+    uiOptParameters->paramMaxEvalSpinBox->setValue(parameters.max_evaluations);
+    uiOptParameters->paramInitStepdoubleSpinBox->setValue(parameters.initial_step_length);
+    uiOptParameters->paramMinStepdoubleSpinBox->setValue(parameters.minimum_step_length);
 }
 
 void OptParametersDialog::on_buttonBox_accepted(){

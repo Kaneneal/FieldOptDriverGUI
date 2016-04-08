@@ -18,7 +18,8 @@ public:
     explicit OptParametersDialog(QWidget *parent = 0);
     ~OptParametersDialog();
 
-    void setOptParametersVariables(int max_evaluations,double initial_step_length,double minimum_step_length); //!< receiving the parameters variables, then setting them in the gui
+ //   void setOptParametersVariables(int max_evaluations,double initial_step_length,double minimum_step_length); //!< receiving the parameters variables, then setting them in the gui
+    void setOptParametersVariables( Utilities::Settings::Optimizer::Parameters parameters);
 
 private slots:
     void on_buttonBox_accepted();

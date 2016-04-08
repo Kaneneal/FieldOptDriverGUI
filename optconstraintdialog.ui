@@ -6,46 +6,264 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>423</width>
-    <height>385</height>
+    <width>665</width>
+    <height>456</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_8">
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <widget class="QLabel" name="optConWellnameLabel">
+       <property name="minimumSize">
+        <size>
+         <width>35</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>35</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Well:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="optConWellNameComboBox">
+       <property name="minimumSize">
+        <size>
+         <width>190</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_11">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <widget class="QLabel" name="label">
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="text">
+          <string>List of Constraints:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="optConstraintListWidget">
+         <property name="minimumSize">
+          <size>
+           <width>230</width>
+           <height>27</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>230</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QPushButton" name="optConAddButton">
            <property name="minimumSize">
             <size>
-             <width>211</width>
-             <height>0</height>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
             </size>
            </property>
            <property name="text">
-            <string>Name:</string>
+            <string>+</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QPushButton" name="optConRemoveButton">
+           <property name="minimumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_11">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>158</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_12">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>27</width>
+           <height>17</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QLabel" name="optConCurrNameLabel">
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Current constraint selected:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="optConItemSelectedLabel">
+           <property name="minimumSize">
+            <size>
+             <width>134</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>&lt;no item selected &gt;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="optConTypeLabel">
            <property name="minimumSize">
             <size>
-             <width>211</width>
-             <height>0</height>
+             <width>50</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="text">
@@ -54,10 +272,29 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox">
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QComboBox" name="optConTypeComboBox">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <item>
             <property name="text">
-             <string>Well Spline</string>
+             <string>Well Spline Points</string>
             </property>
            </item>
            <item>
@@ -75,36 +312,19 @@
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="optConMaxLabel">
            <property name="minimumSize">
             <size>
-             <width>211</width>
+             <width>50</width>
              <height>0</height>
             </size>
            </property>
-           <property name="text">
-            <string>Well:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_2"/>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_2"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QLabel" name="label_5">
-           <property name="minimumSize">
+           <property name="maximumSize">
             <size>
-             <width>211</width>
-             <height>0</height>
+             <width>50</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="text">
@@ -113,9 +333,25 @@
           </widget>
          </item>
          <item>
-          <widget class="QDoubleSpinBox" name="doubleSpinBox">
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="optConMaxdSpinBox">
            <property name="decimals">
             <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>10000.000000000000000</double>
            </property>
            <property name="singleStep">
             <double>0.500000000000000</double>
@@ -127,11 +363,17 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="optConMinLabel">
            <property name="minimumSize">
             <size>
-             <width>211</width>
+             <width>50</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="text">
@@ -140,9 +382,25 @@
           </widget>
          </item>
          <item>
-          <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+          <spacer name="horizontalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="optConMindSpinBox">
            <property name="decimals">
             <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>10000.000000000000000</double>
            </property>
            <property name="singleStep">
             <double>0.500000000000000</double>
@@ -157,25 +415,67 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="optConSplinePointsTypeLabel">
+           <property name="maximumSize">
+            <size>
+             <width>201</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Well Spline Points Input Type:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_3"/>
+          <spacer name="horizontalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QComboBox" name="optConSplinePointsTypeComboBox">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <item>
+            <property name="text">
+             <string>MaxMin</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Function</string>
+            </property>
+           </item>
+          </widget>
          </item>
         </layout>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QLabel" name="label_7">
+          <widget class="QLabel" name="optConSplinePointsLimitsLabel">
            <property name="minimumSize">
             <size>
-             <width>211</width>
+             <width>170</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>170</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="text">
@@ -198,6 +498,45 @@
          </item>
         </layout>
        </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLabel" name="optConSplinePointsFunctionLabel">
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Well Spline Points Function:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="optConSplinePointsFunctionEdit"/>
+         </item>
+        </layout>
+       </item>
       </layout>
      </item>
      <item>
@@ -207,8 +546,8 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>36</width>
+         <height>231</height>
         </size>
        </property>
       </spacer>
@@ -225,23 +564,61 @@
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>17</width>
+       <height>37</height>
       </size>
      </property>
     </spacer>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <item>
+      <spacer name="horizontalSpacer_10">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="minimumSize">
+        <size>
+         <width>176</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>176</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
+  <zorder>buttonBox</zorder>
+  <zorder>horizontalSpacer_10</zorder>
+  <zorder>optConAddButton</zorder>
+  <zorder>optConRemoveButton</zorder>
+  <zorder>horizontalSpacer_11</zorder>
+  <zorder>buttonBox</zorder>
+  <zorder></zorder>
+  <zorder>verticalSpacer_3</zorder>
+  <zorder>line</zorder>
  </widget>
  <resources/>
  <connections>

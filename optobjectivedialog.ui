@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>457</width>
-    <height>366</height>
+    <width>433</width>
+    <height>392</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,8 +24,14 @@
           <widget class="QLabel" name="label">
            <property name="minimumSize">
             <size>
-             <width>181</width>
+             <width>50</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="text">
@@ -34,10 +40,29 @@
           </widget>
          </item>
          <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QComboBox" name="optObjTypeComboBox">
-           <property name="maximumSize">
+           <property name="minimumSize">
             <size>
              <width>250</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>350</width>
              <height>16777215</height>
             </size>
            </property>
@@ -112,8 +137,14 @@
           <widget class="QLabel" name="optObjCoeffisientLabel">
            <property name="minimumSize">
             <size>
-             <width>181</width>
+             <width>80</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="text">
@@ -122,15 +153,37 @@
           </widget>
          </item>
          <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QDoubleSpinBox" name="optObjCoeffisientdSpinBox">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>250</width>
+             <width>70</width>
              <height>16777215</height>
             </size>
            </property>
            <property name="decimals">
             <number>1</number>
+           </property>
+           <property name="minimum">
+            <double>-100.000000000000000</double>
            </property>
            <property name="singleStep">
             <double>0.500000000000000</double>
@@ -145,8 +198,14 @@
           <widget class="QLabel" name="optObjPropertyLabel">
            <property name="minimumSize">
             <size>
-             <width>171</width>
+             <width>70</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>70</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="text">
@@ -155,10 +214,23 @@
           </widget>
          </item>
          <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QComboBox" name="optObjPropertyComboBox">
            <property name="minimumSize">
             <size>
-             <width>250</width>
+             <width>260</width>
              <height>0</height>
             </size>
            </property>
@@ -182,8 +254,14 @@
           <widget class="QLabel" name="optObjTimeStepLabel">
            <property name="minimumSize">
             <size>
-             <width>181</width>
+             <width>80</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="text">
@@ -192,18 +270,40 @@
           </widget>
          </item>
          <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QSpinBox" name="optObjTimeStepSpinBox">
            <property name="minimumSize">
             <size>
-             <width>27</width>
+             <width>70</width>
              <height>27</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>250</width>
+             <width>70</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="frame">
+            <bool>true</bool>
+           </property>
+           <property name="minimum">
+            <number>-100</number>
+           </property>
+           <property name="maximum">
+            <number>100</number>
            </property>
           </widget>
          </item>
@@ -242,8 +342,14 @@
            </property>
            <property name="minimumSize">
             <size>
-             <width>181</width>
+             <width>40</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="text">
@@ -252,16 +358,28 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="optObjectiveWellEdit">
-           <property name="enabled">
-            <bool>false</bool>
+          <spacer name="horizontalSpacer_7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-          </widget>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <widget class="QComboBox" name="optObjectiveWellComboBox">
            <property name="enabled">
             <bool>false</bool>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
            </property>
           </widget>
          </item>

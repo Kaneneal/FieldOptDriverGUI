@@ -324,29 +324,28 @@ void MainWindow::on_optTypeEditButton_clicked(){
 }
 
 void MainWindow::on_optSetParametersButton_clicked(){
-       // uiParameters = new Ui::OptParametersDialog;
-       // optParametersDialog = new QDialog();
-       // uiParameters->setupUi(optParametersDialog);
-       // mWellVariablesDialog->setWindowTitle("Model - Well - Variables");
-    optParametersDialog->setModal(true);
-    optParametersDialog->exec();
+    //optParametersDialog->setModal(true);
+    //optParametersDialog->exec();
+    optParametersDialog->show();
+    optParametersDialog->activateWindow();
 }
 
 void MainWindow::on_optSetObjectiveButton_clicked(){
-        //uiObjective = new Ui::OptObjectiveDialog;
-      //  optObjectiveDialog = new QDialog();
-      //  uiObjective->setupUi(optObjectiveDialog);
-     //   optObjectiveDialog->setWindowTitle("Model - Well - Variables");
-    optObjectiveDialog->setModal(true);
-    optObjectiveDialog->exec();
+    // Bruker dette så må man lukke objective dialog, men kanskje man vil sammenlikne?
+    // optObjectiveDialog->setModal(true);
+    // optObjectiveDialog->exec();
+    optObjectiveDialog->show();
+    optObjectiveDialog->activateWindow();
 
     //hvordan fikser dette... når klikker så må det lages en ny dialog? eller kan den allerede være laget
     // og deretter sette modellen = true...
 }
 
 void MainWindow::on_optSetConstraintsButton_clicked(){
-    optConstraintDialog->setModal(true);
-    optConstraintDialog->exec();
+    // optConstraintDialog->setModal(true);
+    // optConstraintDialog->exec();
+    optConstraintDialog->show();
+    optConstraintDialog->activateWindow();
 }
 
 //-------------END optimizer actions-------------------------------------------------------------------------------------------------|
@@ -488,7 +487,6 @@ void MainWindow::setOptimizerVariables(){
         //initial type (Compass?)
         break;
     }
-
     switch (settings_->optimizer()->mode()){
     case ::Utilities::Settings::Optimizer::OptimizerMode::Maximize:
         ui->optModeComboBox->setCurrentText("Maximize");
@@ -497,14 +495,36 @@ void MainWindow::setOptimizerVariables(){
         ui->optModeComboBox->setCurrentText("Minimize");
         break;
     default:
-        ui->optModeComboBox->setCurrentText("Maximize");
+       // ui->optModeComboBox->setCurrentText("Maximize");
         break;
     }
 
-    // create getters for these variables???? ->
-    optParametersDialog->setOptParametersVariables(settings_->optimizer()->parameters().max_evaluations, settings_->optimizer()->parameters().initial_step_length, settings_->optimizer()->parameters().minimum_step_length);
-    optObjectiveDialog->setOptObjectiveType(settings_->optimizer()->objective().type); //possible change to ->getType()
+    optParametersDialog->setOptParametersVariables(settings_->optimizer()->parameters());
+    optObjectiveDialog->setOptObjectiveType(settings_->optimizer()->objective().type);
 
+    if (settings_->optimizer()->objective().weighted_sum.size() == 1){
+        qDebug() << "Det er bare ett element i objective-lista";
+
+        if( settings_->optimizer()->objective().weighted_sum.value(0).is_well_prop){
+             optObjectiveDialog->setOptObjectiveWellVariables(settings_->optimizer()->objective().weighted_sum.value(0).is_well_prop, settings_->optimizer()->objective().weighted_sum.value(0).well);
+        }
+         else{
+             optObjectiveDialog->setOptObjectiveIsWellPropCheckBox(settings_->optimizer()->objective().weighted_sum.value(0).is_well_prop);
+         }
+        //    optObjectiveDialog->setOptObjectiveWeightedSumComponents(settings_--->coeffisient, settings_---> property,settings_---> timeStep);
+    }
+    else {
+        qDebug() << "Objective-lista er større enn én. Mer enn ett element";
+    }
+        optObjectiveDialog->setOptObjectiveWeightedSumComponents(settings_->optimizer()->objective().weighted_sum);
+    // if only one element in Qlist<WeightesSumComponent> then go for this:  (under) or else set(QList<>);
+    //    optObjectiveDialog->setOptObjectiveWeightedSumComponents(Coeffisient,Property Cumulative,TimeStep);
+
+    // Utilities::Settings::Optimizer::Objective temp_objective_ = settings_->optimizer()->objective(); does not seem to work? wanted to shorten things
+
+    //
+        optConstraintDialog->setLocalConstraintsList(settings_->optimizer()->constraints());
+        optConstraintDialog->setOptConstraintsVariables(settings_->optimizer()->constraints()); // trenger ingen argumenter her?????
 
 }
 
