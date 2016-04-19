@@ -15,31 +15,39 @@ OptObjectiveDialog::~OptObjectiveDialog(){
 
 void OptObjectiveDialog::on_buttonBox_accepted(){
     qDebug() << "Clicked 'OK' in the Objective dialog.";
+    //UPDATE - ALL INFORMATION HAS NEW STATE
+
+
 }
 
 void OptObjectiveDialog::on_buttonBox_rejected(){
     qDebug() << "Clicked 'Cancel' in the Objective dialog.";
+    //RESET ALL INFORMATION TO FORMER STATE (use/load new_component_list)
+
 }
 
 
 void OptObjectiveDialog::on_optObjectiveIsWellPropCheckBox_toggled(bool checked){
-    if (checked){ //!< If it is a well property, enable to specify
-        uiOptObjective->optObjectiveWellLabel->setEnabled(true);
-        uiOptObjective->optObjectiveWellComboBox->setEnabled(true);
-    }
-    //mener man kan putte checked istedenfor true/false
-    else{
-        uiOptObjective->optObjectiveWellLabel->setEnabled(false);
-        uiOptObjective->optObjectiveWellComboBox->setEnabled(false);
-    }
+        //If it is a well property, enable to specify
+        uiOptObjective->optObjectiveWellLabel->setEnabled(checked);
+        uiOptObjective->optObjectiveWellComboBox->setEnabled(checked);
 }
+
+QList<Utilities::Settings::Optimizer::Objective::WeightedSumComponent> *OptObjectiveDialog::new_weighted_sum_list() const{
+    return new_weighted_sum_list_;
+}
+
+void OptObjectiveDialog::setNewWeightedSumList(QList<Utilities::Settings::Optimizer::Objective::WeightedSumComponent> *new_weighted_sum_list){
+    new_weighted_sum_list_ = new_weighted_sum_list;
+}
+
 
 void OptObjectiveDialog::on_optObjTypeComboBox_currentTextChanged(const QString &objType){
     bool enabler = true;
     bool isWellPropEnabler = true;
     if (QString::compare(objType,"Weighted Sum") == 0) {
         enabler = true;
-
+        
         if (uiOptObjective->optObjectiveIsWellPropCheckBox->isChecked()){ //the isWellProp need to stay disabled until this checkbox is checked.
             isWellPropEnabler = true;
         }
@@ -104,12 +112,10 @@ void OptObjectiveDialog::setOptObjectiveWeightedSumComponents(double coefficient
 void OptObjectiveDialog::setOptObjectiveWeightedSumComponents(const QList<Utilities::Settings::Optimizer::Objective::WeightedSumComponent> weighted_sum_list){
 
     for (int i=0; i < weighted_sum_list.length(); i++){
-        // Får to nye objective dialogs opp uten informasjon, og man kan bytte fra dem.
-        // OptObjectiveDialog *moreObjectives = new OptObjectiveDialog();, create list of dialogs? use that list, and uiOptObjective-> for hver iterasjon?
-        // moreObjectives->show();
-        // moreObjectives->activateWindow();
-
-        OptObjectiveDialog::setOptObjectiveWeightedSumComponents( weighted_sum_list.value(i).coefficient, weighted_sum_list.value(i).property, weighted_sum_list.value(i).time_step);
+        comp_number = i + 1;
+        uiOptObjective->optObjWeightedSumListWidget->addItem(QStringLiteral("Component %1").arg(comp_number));
+        //passe på slik at informasjonen vises når man trykker på de forskjellige elementene?!?
+        setOptObjectiveWeightedSumComponents( weighted_sum_list.value(i).coefficient, weighted_sum_list.value(i).property, weighted_sum_list.value(i).time_step);
 
         if (weighted_sum_list.value(i).is_well_prop){
            setOptObjectiveWellVariables( weighted_sum_list.value(i).is_well_prop,  weighted_sum_list.value(i).well );
@@ -121,3 +127,53 @@ void OptObjectiveDialog::setOptObjectiveWeightedSumComponents(const QList<Utilit
 }
 
 
+void OptObjectiveDialog::on_optObjAddComponentButton_clicked(){
+    //need to do something about temp_component_list
+    addComponent();
+    comp_number = comp_number + 1;
+
+}
+
+
+void OptObjectiveDialog::on_optObjRemoveComponentButton_clicked(){
+    //remove element from the (also constraint_list... fix soon
+    if(uiOptObjective->optObjWeightedSumListWidget->item(0) != NULL){
+        delete uiOptObjective->optObjWeightedSumListWidget->currentItem();
+       // initializeConPropertiesDialog();
+        comp_number = comp_number - 1;
+    }
+    else{
+        comp_number = 1;
+    }
+}
+
+void OptObjectiveDialog::on_optObjWeightedSumListWidget_currentTextChanged(const QString &current_comp){
+    //check for the current name, then update component information
+    updateComponentInformation(current_comp);
+
+    //use currentRowChanged instead of THIS METHOD??? currentItemChanged(&item);
+}
+
+
+void OptObjectiveDialog::updateComponentInformation(const QString current_comp){// tar inn int i stedet?
+    // comp_numb
+    //currentItem   what row, at? ItemAt()?
+    //show current information from the current_comp-number
+   // setOptObjectiveWeightedSumComponents();
+}
+
+void OptObjectiveDialog::addComponent(){
+
+        QListWidgetItem *new_item = new QListWidgetItem(QStringLiteral("Component %1").arg(comp_number), uiOptObjective->optObjWeightedSumListWidget);
+        uiOptObjective->optObjWeightedSumListWidget->setCurrentItem(new_item);
+
+        Utilities::Settings::Optimizer::Objective::WeightedSumComponent new_weighted_component;
+
+        temp_weighted_sum_list_->append(new_weighted_component);
+
+        //need to create a weighted sum component, this object need to be updated with information, when clicking update
+}
+
+void OptObjectiveDialog::on_optObjWeightedSumListWidget_currentRowChanged(int currentRow){
+
+}

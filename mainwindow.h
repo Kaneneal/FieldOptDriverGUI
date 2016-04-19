@@ -106,6 +106,8 @@ private slots:
 
     void closeEvent (QCloseEvent *event);
 
+    void on_globalBookkeepCheckBox_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui; //!<
     QFileDialog *browseFileDialog; //!< file dialog used to find the file path - output place and driver path

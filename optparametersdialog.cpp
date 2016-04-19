@@ -6,6 +6,7 @@ OptParametersDialog::OptParametersDialog(QWidget *parent) :
     uiOptParameters(new Ui::OptParametersDialog){
     uiOptParameters->setupUi(this);
     this->setWindowTitle("Optimizer - Parameters");
+    setToolTips();
 }
 
 OptParametersDialog::~OptParametersDialog(){
@@ -24,4 +25,9 @@ void OptParametersDialog::on_buttonBox_accepted(){
 
 void OptParametersDialog::on_buttonBox_rejected(){
     qDebug() << "Clicked 'Cancel' in the Parameters dialog.";
+}
+
+void OptParametersDialog::setToolTips(){
+    // tool tips for the spin boxes, and variables
+
 }

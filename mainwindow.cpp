@@ -142,6 +142,10 @@ void MainWindow::connectAllStuff(){
     connect( ui->simDriverPathEditButton, SIGNAL(clicked(bool)), ui->simBrowseButton, SLOT(click()));
     connect( ui->jsonPathEditButton, SIGNAL(clicked(bool)), ui->actionOpen_JSON_file, SLOT(trigger()));
 
+    //Global
+    //Bookkeeper checbox, label and enabler
+    connect( ui->globalBookkeepCheckBox, SIGNAL(toggled(bool)), ui->globalBookkeepTolLabel, SLOT(setEnabled(bool) ));
+    connect( ui->globalBookkeepCheckBox, SIGNAL(toggled(bool)), ui->globalBookkeepTolerancedSpinBox, SLOT(setEnabled(bool)) );
 }
 
 void MainWindow::fixIconOnButton(){
@@ -258,6 +262,12 @@ void MainWindow::on_globalBrowseButton_clicked(){ //fix own instance of file dia
    // browseFileDialog->setFocus();
     if(!tempOutputDirectory.isNull()){ //!< if you chose a path with the file dialog, the line edit is changed. If not, nothing happens
         ui->globalPathEdit->setText(tempOutputDirectory); //!< Sets the text in the lineEdit field to be the choosen path to the directory
+    }
+}
+
+void MainWindow::on_globalBookkeepCheckBox_toggled(bool checked){
+    if (!checked){
+        ui->globalBookkeepTolerancedSpinBox->setValue(0.0);
     }
 }
 
@@ -444,8 +454,21 @@ void MainWindow::setGlobalVariables(){
     ui->globalPathEdit->setText(settings_->output_directory());
     //default use a setter instead of... settings_->bookkeeper_tolerance()= 0.0;
     //check if bookkeeper_tolerance is set, if not default = 0.0
-}
 
+    // det har å gjøre med bookkeeperen som holder oversikt over hvilke sett med variable som har blitt evaluert,
+    // sånn at man ikke evaluerer samme to ganger. Hvis tolerance er større enn 0 vil man også droppe å evaluere
+    // variable som er nære de som allerede har blitt evaluert (hvis tolerance er 5 vil et sett med variable som
+    //er "lengde" 5 unna et allerede evaulert sett bli droppe
+
+    //if() checkbox == true, setCheckboxEnabled setbookkeeperTol
+    if (settings_->bookkeeper_tolerance() != 0.0 ){
+        ui->globalBookkeepCheckBox->setChecked(true);
+        ui->globalBookkeepTolerancedSpinBox->setValue(settings_->bookkeeper_tolerance());
+    }
+    else{
+        ui->globalBookkeepTolerancedSpinBox->setValue(0.0);
+    }
+}
 void MainWindow::setModelVariables(){
     switch (settings_->model()->reservoir().type) { //more types?
     case ::Utilities::Settings::Model::ReservoirGridSourceType::ECLIPSE:
@@ -462,18 +485,22 @@ void MainWindow::setModelVariables(){
 }
 
 void MainWindow::setSimulatorVariables(){
-    switch (settings_->simulator()->type()) { //more types?
-    case ::Utilities::Settings::Simulator::SimulatorType::ECLIPSE:
+    switch (settings_->simulator()->type()) {
+    case Utilities::Settings::Simulator::SimulatorType::ECLIPSE:
         // set ui string value
         ui->simTypeComboBox->setCurrentText("ECLIPSE");
         //test if the combo box contains the chosen simulator type, if not, addItem to the list (and make it currentItem) (for to run through the list)
+        //but we probably need to manually add the new alternative to the software
+        break;
+    case Utilities::Settings::Simulator::SimulatorType::ADGPRS:
+        ui->simTypeComboBox->setCurrentText("ADGPRS");
         break;
     default:
-        //Initial type (ECLIPSE?)
+        //Initial type (ECLIPSE?) There is testing in the simulator.cpp already, that takes care of non-existing types
         break;
     }
     ui->simPathEdit->setText(settings_->simulator()->driver_file_path());
-
+    bashDialog->setBashCommandsImport(settings_->simulator()->script_name(), settings_->simulator()->commands());
 }
 
 void MainWindow::setOptimizerVariables(){
@@ -502,30 +529,16 @@ void MainWindow::setOptimizerVariables(){
     optParametersDialog->setOptParametersVariables(settings_->optimizer()->parameters());
     optObjectiveDialog->setOptObjectiveType(settings_->optimizer()->objective().type);
 
-    if (settings_->optimizer()->objective().weighted_sum.size() == 1){
-        qDebug() << "Det er bare ett element i objective-lista";
-
-        if( settings_->optimizer()->objective().weighted_sum.value(0).is_well_prop){
-             optObjectiveDialog->setOptObjectiveWellVariables(settings_->optimizer()->objective().weighted_sum.value(0).is_well_prop, settings_->optimizer()->objective().weighted_sum.value(0).well);
-        }
-         else{
-             optObjectiveDialog->setOptObjectiveIsWellPropCheckBox(settings_->optimizer()->objective().weighted_sum.value(0).is_well_prop);
-         }
-        //    optObjectiveDialog->setOptObjectiveWeightedSumComponents(settings_--->coeffisient, settings_---> property,settings_---> timeStep);
-    }
-    else {
-        qDebug() << "Objective-lista er større enn én. Mer enn ett element";
-    }
+    //checking if the weighted sum component list isn't empty - (HAVE ASSUMED THAT NO OTHER OBJECTIVE TYPE EXIST)
+    if (settings_->optimizer()->objective().weighted_sum.size() > 0){
+        qDebug() << "Objective-lista inneholder noe.";
         optObjectiveDialog->setOptObjectiveWeightedSumComponents(settings_->optimizer()->objective().weighted_sum);
-    // if only one element in Qlist<WeightesSumComponent> then go for this:  (under) or else set(QList<>);
-    //    optObjectiveDialog->setOptObjectiveWeightedSumComponents(Coeffisient,Property Cumulative,TimeStep);
-
-    // Utilities::Settings::Optimizer::Objective temp_objective_ = settings_->optimizer()->objective(); does not seem to work? wanted to shorten things
-
-    //
-        optConstraintDialog->setLocalConstraintsList(settings_->optimizer()->constraints());
-        optConstraintDialog->setOptConstraintsVariables(settings_->optimizer()->constraints()); // trenger ingen argumenter her?????
-
+    }
+    //checking if the constraint list isn't empty
+    if (settings_->optimizer()->constraints()->size() > 0){
+        optConstraintDialog->setOptConstraintsVariables(settings_->optimizer()->constraints());
+    }
 }
 
 //------ END Set/show-in-GUI methods ------------------------------------------------------------------------------------------------------|
+

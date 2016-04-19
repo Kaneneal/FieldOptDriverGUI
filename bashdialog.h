@@ -19,6 +19,9 @@ public:
     explicit BashDialog(QWidget *parent = 0);
     ~BashDialog();
 
+    void setBashCommandsImport(const QString &script_name, QStringList *commands); //!< set/show the imported bash commands in the bash dialog
+
+    QStringList *getNewCommandsList() const;
 
 private slots:
 
@@ -26,9 +29,7 @@ private slots:
 
     void fixToolTips();  //!<
 
-    void updateBashDialog();  //!<
-
-    void updateBASHcommands();  //!<
+    void updateBASHcommands(QStringList *temp_commands_list);  //!< use for accepting or rejecting new commands list.
 
     void on_buttonBox_accepted();  //!<
 
@@ -40,10 +41,25 @@ private slots:
 
     void on_addCustomItemBashListButton_clicked();  //!<
 
+    void setNewCommandsList( QStringList *commands); //!<
+
+    void addCustomItem();
+
+    void removeItem();
+
+    void addItem();
+
 
 private:
-    Ui::BashDialog *ui; //!<
+    Ui::BashDialog *uiBash; //!<
     Qt::ItemFlag *itemFlag; //!<
+    QStringList *new_commands_list_; //!< The new commands list with updated information
+    QStringList *temp_commands_list_; //!< For saving changes during user changes. If rejecting(Cancel) this will be cleared.
+
+    //temp_list changes during user changes
+    //if changes commands, then click ok, new_commands_list = temp_list, click cancel, new_commands_list is still identical to commands.
+    //if click save after use of program, new_commands_list is the "new" commands_
+
 };
 
 #endif // BASHDIALOG_H

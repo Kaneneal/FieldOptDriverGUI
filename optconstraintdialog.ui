@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>665</width>
-    <height>456</height>
+    <width>620</width>
+    <height>408</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -111,6 +111,9 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="tabKeyNavigation">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -154,17 +157,7 @@
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer_11">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>158</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
+          <widget class="QLineEdit" name="optConChangeNameEdit"/>
          </item>
         </layout>
        </item>
@@ -292,6 +285,11 @@
              <height>0</height>
             </size>
            </property>
+           <item>
+            <property name="text">
+             <string/>
+            </property>
+           </item>
            <item>
             <property name="text">
              <string>Well Spline Points</string>
@@ -448,6 +446,11 @@
              <height>0</height>
             </size>
            </property>
+           <item>
+            <property name="text">
+             <string/>
+            </property>
+           </item>
            <item>
             <property name="text">
              <string>MaxMin</string>
@@ -610,12 +613,6 @@
     </layout>
    </item>
   </layout>
-  <zorder>buttonBox</zorder>
-  <zorder>horizontalSpacer_10</zorder>
-  <zorder>optConAddButton</zorder>
-  <zorder>optConRemoveButton</zorder>
-  <zorder>horizontalSpacer_11</zorder>
-  <zorder>buttonBox</zorder>
   <zorder></zorder>
   <zorder>verticalSpacer_3</zorder>
   <zorder>line</zorder>

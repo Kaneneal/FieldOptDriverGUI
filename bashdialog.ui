@@ -20,26 +20,50 @@
       <widget class="QLabel" name="label">
        <property name="minimumSize">
         <size>
-         <width>225</width>
+         <width>190</width>
          <height>0</height>
         </size>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>190</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="text">
-        <string>Shell Type:</string>
+        <string>Shell Type/ Execution script:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox">
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QComboBox" name="bashShellTypeComboBox">
        <property name="minimumSize">
         <size>
-         <width>200</width>
+         <width>215</width>
          <height>0</height>
         </size>
        </property>
        <item>
         <property name="text">
-         <string>csh</string>
+         <string>csh_esclrun</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>test</string>
         </property>
        </item>
       </widget>
@@ -94,8 +118,14 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QLabel" name="label_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>27</height>
+          </size>
+         </property>
          <property name="text">
-          <string>Bash command examples:</string>
+          <string>Bash command examples/suggestions:</string>
          </property>
         </widget>
        </item>
@@ -109,7 +139,7 @@
          </property>
          <item>
           <property name="text">
-           <string>tcsh -c \&quot;eval source ~/.cshrc; eclrun eclipse\&quot;</string>
+           <string>tcsh -c &quot;eval source ~/.cshrc; eclrun eclipse&quot;</string>
           </property>
          </item>
          <item>
@@ -219,7 +249,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QLineEdit" name="bashCutomLineEdit">
+          <widget class="QLineEdit" name="bashCustomLineEdit">
            <property name="minimumSize">
             <size>
              <width>229</width>

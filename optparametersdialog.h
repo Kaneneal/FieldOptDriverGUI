@@ -26,6 +26,8 @@ private slots:
 
     void on_buttonBox_rejected();
 
+    void setToolTips();
+
 private:
     Ui::OptParametersDialog *uiOptParameters;
 };

@@ -45,7 +45,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -152,41 +152,84 @@
          </item>
         </layout>
        </widget>
-       <widget class="QLabel" name="label_2">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>830</x>
+          <x>430</x>
           <y>20</y>
-          <width>171</width>
-          <height>17</height>
+          <width>241</width>
+          <height>64</height>
          </rect>
         </property>
-        <property name="text">
-         <string>Bookkeeping tolerance:</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox">
-        <property name="geometry">
-         <rect>
-          <x>670</x>
-          <y>20</y>
-          <width>141</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Bookkeeping?</string>
-        </property>
-       </widget>
-       <widget class="QDoubleSpinBox" name="doubleSpinBox">
-        <property name="geometry">
-         <rect>
-          <x>870</x>
-          <y>50</y>
-          <width>69</width>
-          <height>27</height>
-         </rect>
-        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QCheckBox" name="globalBookkeepCheckBox">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Want bookkeeping?</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <item>
+            <widget class="QLabel" name="globalBookkeepTolLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>27</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>27</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Bookkeeping tolerance:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="globalBookkeepTolerancedSpinBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="showGroupSeparator" stdset="0">
+              <bool>false</bool>
+             </property>
+             <property name="decimals">
+              <number>1</number>
+             </property>
+             <property name="singleStep">
+              <double>0.500000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="modelTab">
@@ -222,7 +265,7 @@
        <widget class="QLabel" name="label_12">
         <property name="geometry">
          <rect>
-          <x>520</x>
+          <x>820</x>
           <y>90</y>
           <width>67</width>
           <height>17</height>
@@ -248,7 +291,7 @@
        <widget class="QPushButton" name="modelSetWellVariablesButton">
         <property name="geometry">
          <rect>
-          <x>460</x>
+          <x>760</x>
           <y>40</y>
           <width>161</width>
           <height>27</height>
@@ -378,6 +421,49 @@
          </item>
         </layout>
        </widget>
+       <widget class="QLabel" name="modControlTImesLabel">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>10</y>
+          <width>151</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Control Times:</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="listWidget">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>30</y>
+          <width>61</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>50</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>100</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>365</string>
+         </property>
+        </item>
+       </widget>
       </widget>
       <widget class="QWidget" name="simTab">
        <attribute name="title">
@@ -452,6 +538,11 @@
              </item>
              <item>
               <property name="text">
+               <string>ADGPRS</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string>Test</string>
               </property>
              </item>
@@ -519,7 +610,7 @@
         <property name="geometry">
          <rect>
           <x>510</x>
-          <y>50</y>
+          <y>40</y>
           <width>250</width>
           <height>27</height>
          </rect>
@@ -1139,8 +1230,8 @@
         <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
-           <x>80</x>
-           <y>30</y>
+           <x>10</x>
+           <y>10</y>
            <width>341</width>
            <height>31</height>
           </rect>
@@ -1191,6 +1282,8 @@
           </item>
          </layout>
         </widget>
+        <zorder>layoutWidget</zorder>
+        <zorder>tabWidget</zorder>
        </widget>
       </item>
      </layout>
