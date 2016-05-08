@@ -45,7 +45,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -424,45 +424,100 @@
        <widget class="QLabel" name="modControlTImesLabel">
         <property name="geometry">
          <rect>
-          <x>430</x>
-          <y>10</y>
+          <x>490</x>
+          <y>90</y>
           <width>151</width>
           <height>17</height>
          </rect>
         </property>
         <property name="text">
-         <string>Control Times:</string>
+         <string>Control Times</string>
         </property>
        </widget>
-       <widget class="QListWidget" name="listWidget">
+       <widget class="QListWidget" name="modelControlTimesListWidget">
         <property name="geometry">
          <rect>
-          <x>430</x>
-          <y>30</y>
-          <width>61</width>
+          <x>570</x>
+          <y>20</y>
+          <width>71</width>
           <height>61</height>
          </rect>
         </property>
-        <item>
-         <property name="text">
-          <string>0</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>50</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>100</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>365</string>
-         </property>
-        </item>
+       </widget>
+       <widget class="QPushButton" name="modelRemoveControlTimeButton">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>50</y>
+          <width>27</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>27</width>
+          <height>27</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>27</width>
+          <height>27</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="modelAddControlTimeButton">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>20</y>
+          <width>27</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>27</width>
+          <height>27</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>27</width>
+          <height>27</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>+</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="modelControlTimesSpinBox">
+        <property name="geometry">
+         <rect>
+          <x>455</x>
+          <y>20</y>
+          <width>70</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="simTab">
@@ -606,7 +661,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QPushButton" name="simChooseCommButton">
+       <widget class="QPushButton" name="simChooseBashComButton">
         <property name="geometry">
          <rect>
           <x>510</x>
@@ -1282,8 +1337,6 @@
           </item>
          </layout>
         </widget>
-        <zorder>layoutWidget</zorder>
-        <zorder>tabWidget</zorder>
        </widget>
       </item>
      </layout>
@@ -1391,7 +1444,7 @@
   <tabstop>globalBrowseButton</tabstop>
   <tabstop>modelTypeComboBox</tabstop>
   <tabstop>simTypeComboBox</tabstop>
-  <tabstop>simChooseCommButton</tabstop>
+  <tabstop>simChooseBashComButton</tabstop>
   <tabstop>simPathEdit</tabstop>
   <tabstop>simBrowseButton</tabstop>
   <tabstop>simDriverPathLine</tabstop>

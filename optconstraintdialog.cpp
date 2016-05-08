@@ -4,13 +4,8 @@
 OptConstraintDialog::OptConstraintDialog(QWidget *parent) :
     QDialog(parent),
     uiOptConstraint(new Ui::OptConstraintDialog){
-    uiOptConstraint->setupUi(this);
-    this->setWindowTitle("Optimizer - Constraints");
-    setConstraintToolTips();
+    setupDialog();
 
-    connect(uiOptConstraint->optConstraintListWidget,SIGNAL(currentTextChanged(QString)), uiOptConstraint->optConItemSelectedLabel,SLOT(setText(QString)));
-   // connect(uiOptConstraint->optConstraintListWidget,SIGNAL(currentTextChanged(QString)), uiOptConstraint->optConChangeNameEdit, SLOT(setText(QString)));
-    initializeConPropertiesDialog();
 }
 
 OptConstraintDialog::~OptConstraintDialog(){
@@ -28,9 +23,21 @@ void OptConstraintDialog::on_buttonBox_rejected(){
     //RESET ALL INFORMATION TO FORMER STATE
 }
 
-void OptConstraintDialog::setConstraintToolTips(){
+void OptConstraintDialog::setupDialog(){
+    uiOptConstraint->setupUi(this);
+    this->setWindowTitle("Optimizer - Constraints");
+    setToolTips();
+
+    connect(uiOptConstraint->optConstraintListWidget,SIGNAL(currentTextChanged(QString)), uiOptConstraint->optConItemSelectedLabel,SLOT(setText(QString)));
+   //connect(uiOptConstraint->optConstraintListWidget,SIGNAL(currentTextChanged(QString)), uiOptConstraint->optConChangeNameEdit, SLOT(setText(QString)));
+    initializeConPropertiesDialog();
+}
+
+void OptConstraintDialog::setToolTips(){
     uiOptConstraint->optConWellNameComboBox->setToolTip("Name of well");
     uiOptConstraint->optConstraintListWidget->setToolTip("List of current well's constraints");
+
+    //MORE
 }
 
 void OptConstraintDialog::setConItemInformation(int currItem){
@@ -159,7 +166,7 @@ void OptConstraintDialog::on_optConWellNameComboBox_currentTextChanged(const QSt
     while(i < local_constraints_list_->size()){
         current_well = local_constraints_list_->at(i).well;
         current_name = local_constraints_list_->at(i).name;
-
+        // current_name is added to constraint_name_list if it correspond to current well, and isn't already in list
         if (QString::compare(well_name, current_well) == 0 && !constraint_name_list.contains(current_name)){
              constraint_name_list.append(current_name);
         }
@@ -178,19 +185,21 @@ void OptConstraintDialog::setOptLocalConstraintsList(const QList<Utilities::Sett
 }
 
 void OptConstraintDialog::on_optConstraintListWidget_currentTextChanged(const QString &currentText){
-   // uiOptConstraint->optConstraintListWidget->setCurrentItem(0); it happens when connect()
+    // uiOptConstraint->optConstraintListWidget->setCurrentItem(0); it happens when connect()
     //every property shall change with the information belonging to the right item
+    //So the signal reacts to changing text ->
     uiOptConstraint->optConTypeComboBox->setCurrentText("");
     //legge inn test om widgetList ikke er tom
 
     uiOptConstraint->optConTypeLabel->setEnabled(true);
     uiOptConstraint->optConTypeComboBox->setEnabled(true);
-
+    //Show information corresponding to constraints item.
     for (int i = 0; i < local_constraints_list_->length(); i++) {
         if(QString::compare(currentText,local_constraints_list_->at(i).name) == 0 ){
             setConItemInformation(i);
             // break the for loop?? How to do that?;
            // continue;
+            //return; //tror jeg skal fungere
         }
     }
 }
@@ -220,6 +229,7 @@ void OptConstraintDialog::on_optConSplinePointsTypeComboBox_currentTextChanged(c
     enableDisableUiElementsSplinePointTypeComboBox(spline_type);
 }
 
+
 void OptConstraintDialog::enableDisableUiElementsConTypeComboBox(const QString &constraint_type){
     //what to enable and disable ui elements, depending on the constraint type (text in the combobox)
     bool enabler_spline = false;
@@ -240,7 +250,6 @@ void OptConstraintDialog::enableDisableUiElementsConTypeComboBox(const QString &
     if ( (QString::compare(constraint_type, "BHP") == 0) || (QString::compare(constraint_type, "Rate")==0)){
         enabler_BHP_Rate = true;
         enabler_spline = false;
-
         uiOptConstraint->optConSplinePointsLimitsLabel->setEnabled(false);
         uiOptConstraint->optConSplinePointsFunctionLabel->setEnabled(false);
         uiOptConstraint->optConSplinePointsFunctionEdit->setEnabled(false);

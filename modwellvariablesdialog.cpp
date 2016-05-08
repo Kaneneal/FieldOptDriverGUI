@@ -16,9 +16,10 @@ ModWellVariablesDialog::~ModWellVariablesDialog(){
 
 void ModWellVariablesDialog::on_buttonBox_accepted(){
     qDebug() << "Clicked 'OK' in the Model Well Variables dialog (accepted)";
-
+    // Send new updated info to settings object.
 }
 
 void ModWellVariablesDialog::on_buttonBox_rejected(){
     qDebug() << "Clicked 'Cancel' in the Model Well Variables dialog(rejected)";
+    // Reset GUI to previous state.
 }

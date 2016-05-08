@@ -16,9 +16,9 @@ public:
     ~ModWellVariablesDialog();
 
 private slots:
-    void on_buttonBox_accepted();
-
-    void on_buttonBox_rejected();
+    //Signal methods
+    void on_buttonBox_accepted(); //!< Click 'Ok' on Variables dialog.
+    void on_buttonBox_rejected(); //!< Click 'Cancel' on Variables dialog.
 
 private:
     Ui::ModWellVariablesDialog *uiVariables;

@@ -17,13 +17,11 @@ public:
     ~ModWellCompletionsDialog();
 
 private slots:
-    void on_modWellCompletionButtonBox_accepted();
-
-    void on_modWellCompletionButtonBox_rejected();
-
-    void on_modWellCompAddButton_clicked();
-
-    void on_modWellCompRemoveButton_clicked();
+    //Signal methods (reacts to user action).
+    void on_modWellCompletionButtonBox_accepted(); //!< Click 'Ok'. Send information to the settings object.
+    void on_modWellCompletionButtonBox_rejected(); //!< Click 'Cancel'. Set info in the dialog to previous state.
+    void on_modWellCompAddButton_clicked(); //!< Add a completion to the list.
+    void on_modWellCompRemoveButton_clicked(); //!< Remove selected/current (item)completion from the list.
 
 private:
     Ui::ModWellCompletionsDialog *uiCompletions;

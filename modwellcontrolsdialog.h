@@ -17,11 +17,11 @@ public:
     ~ModWellControlsDialog();
 
 private slots:
-    void on_mWellControlModeComboBox_currentTextChanged(const QString &arg1);
 
-    void on_wellControlButtonBox_accepted();
-
-    void on_wellControlButtonBox_rejected();
+    //Signal methods (reacts to user action).
+    void on_mWellControlModeComboBox_currentTextChanged(const QString &control_mode); //!< Enables/disables based on control mode.
+    void on_wellControlButtonBox_accepted(); //Click 'Ok'. Send info to settings objects.
+    void on_wellControlButtonBox_rejected(); //Click 'Cancel'. Set to previous state. No changes stored.
 
 private:
     Ui::ModWellControlsDialog *uiControls;

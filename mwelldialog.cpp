@@ -39,7 +39,6 @@ void MWellDialog::setupMWellDialogs(){
 
 //------------- Model Well -----------------------------------------------------------------------------|
 
-
 void MWellDialog::on_mWellSetControlsButton_clicked(){
     mWellControlsDialog->setModal(true);
     mWellControlsDialog->exec();
@@ -66,16 +65,14 @@ void MWellDialog::on_mWellSetVariablesButton_clicked(){
 }
 
 
-
-
-void MWellDialog::on_mWellDefinitionTypeComboBox_currentTextChanged(const QString &defType){
-    if (QString::compare(defType,"Well Blocks") == 0) {
+void MWellDialog::on_mWellDefinitionTypeComboBox_currentTextChanged(const QString &def_type){
+    if (QString::compare(def_type,"Well Blocks") == 0) {
         uiModWell->mWellBlocksArraysLabel->setEnabled(true);
         //uiModWell->mWellBOX->setEnabled(true);
         uiModWell->mWellSplinePointsArraysLabel->setEnabled(false);
         //uiModWell->mWellBOX->setEnabled(false);
     }
-    if (QString::compare( defType,"Well Spline") == 0 ){
+    if (QString::compare( def_type,"Well Spline") == 0 ){
         uiModWell->mWellSplinePointsArraysLabel->setEnabled(true);
         //uiModWell->mWellBOX->setEnabled(true);
         uiModWell->mWellBlocksArraysLabel->setEnabled(false);
@@ -88,9 +85,11 @@ void MWellDialog::on_mWellDefinitionTypeComboBox_currentTextChanged(const QStrin
 
 void MWellDialog::on_buttonBox_accepted(){
     qDebug() << "Clicked 'OK' in the (add) Well dialog.";
+    //send new variables to settings object
 }
 
 void MWellDialog::on_buttonBox_rejected(){
     qDebug() << "Clicked 'Cancel' in the (add) Well dialog.";
+    //fix to previuos state
 
 }

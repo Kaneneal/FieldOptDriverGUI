@@ -29,28 +29,24 @@ public:
 
 private slots:
 
-    void setupMWellDialogs(); //!< ui->setupUI(QDialog) for Well, ui->setupUI(QDialog) for Controls and Variables
+    //Signal methods (reacts to user action).
+    void on_mWellDefinitionTypeComboBox_currentTextChanged(const QString &def_type);//!< Enable/disable elements bades in definition type.
+    void on_mWellSpecVariablesCheckBox_clicked(); //!< Enable/disable Variables elements based on user action.
+    void on_mWellSetControlsButton_clicked(); //!< Activate Control dialog (setmodal).
+    void on_mWellSetCompletionsButton_clicked(); //!< Activate Completion dialog (setmodal).
+    void on_mWellSetVariablesButton_clicked(); //!< Activate Variables dialog (setmodal).
+    void on_buttonBox_accepted(); // NOT FINISHED //!< Click 'OK', send data to Settings object.
+    void on_buttonBox_rejected(); //NOT FINISHED//!< Click 'Cancel', reset GUI-data to previous state.
 
-    void on_mWellSetControlsButton_clicked();
+    void setupMWellDialogs(); //!< Setup ui, and set window title for mwell dialog. Create Controls, Completions, and Variables objects.
 
-    void on_mWellSpecVariablesCheckBox_clicked();
-
-    void on_mWellDefinitionTypeComboBox_currentTextChanged(const QString &arg1);
-
-    void on_mWellSetCompletionsButton_clicked();
-
-    void on_mWellSetVariablesButton_clicked();
-
-    void on_buttonBox_accepted();
-
-    void on_buttonBox_rejected();
 
 private:
     Ui::MWellDialog *uiModWell;
 
-   ModWellCompletionsDialog *mWellCompletionsDialog;
-   ModWellControlsDialog *mWellControlsDialog;
-   ModWellVariablesDialog *mWellVariablesDialog;
+    ModWellCompletionsDialog *mWellCompletionsDialog;
+    ModWellControlsDialog *mWellControlsDialog;
+    ModWellVariablesDialog *mWellVariablesDialog;
 
 };
 

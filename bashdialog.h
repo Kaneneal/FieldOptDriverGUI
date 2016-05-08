@@ -3,6 +3,11 @@
 
 #include <QDialog>
 #include <QDebug>
+#include <QtCore>
+#include <QListWidget>
+
+#include "Utilities/settings/simulator.h"
+
 
 namespace Ui {
 class BashDialog;
@@ -19,46 +24,31 @@ public:
     explicit BashDialog(QWidget *parent = 0);
     ~BashDialog();
 
-    void setBashCommandsImport(const QString &script_name, QStringList *commands); //!< set/show the imported bash commands in the bash dialog
-
-    QStringList *getNewCommandsList() const;
+    void setBashCommandsImport(Utilities::Settings::Simulator *simulator ); //!< set/show the imported bash commands in the bash dialog
 
 private slots:
 
-    void setupBashDialog(); //!<
+    //Signal methods (reacts to user action).
+    void on_buttonBox_accepted();  //!< Clicked 'OK' in bash dialog. Runs updateSimulatorBashToUtilities(): Sends/updates bash to the settings object.
+    void on_buttonBox_rejected();  //!< Clicked 'Cancel'in bash dialog.
+    void on_addItemBashListButton_clicked();  //!< Runs addItem().
+    void on_removeItemBashListButton_clicked();  //!< Runs removeItem().
+    void on_addCustomItemBashListButton_clicked();  //!< Runs addCustomItem.
 
-    void fixToolTips();  //!<
 
-    void updateBASHcommands(QStringList *temp_commands_list);  //!< use for accepting or rejecting new commands list.
-
-    void on_buttonBox_accepted();  //!<
-
-    void on_buttonBox_rejected();  //!<
-
-    void on_addItemBashListButton_clicked();  //!<
-
-    void on_removeItemBashListButton_clicked();  //!<
-
-    void on_addCustomItemBashListButton_clicked();  //!<
-
-    void setNewCommandsList( QStringList *commands); //!<
-
-    void addCustomItem();
-
-    void removeItem();
-
-    void addItem();
-
+    void setupBashDialog(); //!< Setup, and set window title for bash dialog. Run setToolTips().
+    void setToolTips();  //!< Set all tool tips for elements in the bash dialog.
+    void addItem(); //!< Add selected/current item. Used in on_addItemBashListButton_clicked().
+    void removeItem(); //!< Remove selected/current item. Used in on_removeItemBashListButton_clicked().
+    void addCustomItem(); //!< Add custom created item. Used in button signal (on_addCustomItemBashListButton_clicked()).
+    void updateSimulatorBashToUtilities(); //!< Sends/updates bash to the settings object.
+    void resetExampleItems(); //!< Resets info to previous state. Used to put example items back in that list if clicks 'Cancel' after choosing them.
 
 private:
-    Ui::BashDialog *uiBash; //!<
-    Qt::ItemFlag *itemFlag; //!<
-    QStringList *new_commands_list_; //!< The new commands list with updated information
-    QStringList *temp_commands_list_; //!< For saving changes during user changes. If rejecting(Cancel) this will be cleared.
+    Ui::BashDialog *uiBash;
+    Utilities::Settings::Simulator *simulator_;
+    QList <QListWidgetItem*> selected_example_items_;//!< list for example items that is added in the bash widget list
 
-    //temp_list changes during user changes
-    //if changes commands, then click ok, new_commands_list = temp_list, click cancel, new_commands_list is still identical to commands.
-    //if click save after use of program, new_commands_list is the "new" commands_
 
 };
 

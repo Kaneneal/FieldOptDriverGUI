@@ -11,6 +11,11 @@ namespace Ui {
 class OptParametersDialog;
 }
 
+/*!
+ * \brief The OptParametersDialog class contains Optimizer's Parameters.
+ *  It handles how the three variables is set based on user actions.
+ * \param max evalutions, initial step length, minimum step length
+ */
 class OptParametersDialog : public QDialog{
     Q_OBJECT
 
@@ -22,14 +27,16 @@ public:
     void setOptParametersVariables( Utilities::Settings::Optimizer::Parameters parameters);
 
 private slots:
-    void on_buttonBox_accepted();
+    //Signal methods
+    void on_buttonBox_accepted(); //!< Click 'OK', send data to Settings object.
+    void on_buttonBox_rejected(); //!< Click 'Cancel', reset GUI-data to previous state.
 
-    void on_buttonBox_rejected();
-
-    void setToolTips();
+    void setToolTips(); //!< Set tool tip for everything in the parameters dialog.
+    void updateParametersToUtilities(); //!< Set/show-in-GUI parameters variables.
 
 private:
     Ui::OptParametersDialog *uiOptParameters;
+    Utilities::Settings::Optimizer::Parameters parameters_;
 };
 
 #endif // OPTPARAMETERSDIALOG_H
