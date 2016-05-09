@@ -4,9 +4,7 @@
 OptParametersDialog::OptParametersDialog(QWidget *parent) :
     QDialog(parent),
     uiOptParameters(new Ui::OptParametersDialog){
-    uiOptParameters->setupUi(this);
-    this->setWindowTitle("Optimizer - Parameters");
-    setToolTips();
+    setupDialog();
 }
 
 OptParametersDialog::~OptParametersDialog(){
@@ -32,12 +30,25 @@ void OptParametersDialog::on_buttonBox_rejected(){
     setOptParametersVariables(parameters_);
 }
 
+void OptParametersDialog::setupDialog(){
+    uiOptParameters->setupUi(this);
+    this->setWindowTitle("Optimizer - Parameters");
+    setToolTips();
+    initializeParametersObject();
+}
+
 void OptParametersDialog::setToolTips(){
     // tool tips for the spin boxes, and variables
-    uiOptParameters->buttonBox->setToolTip("");
-    uiOptParameters->paramMaxEvalSpinBox->setToolTip("");
-    uiOptParameters->paramMinStepdoubleSpinBox->setToolTip("");
-    uiOptParameters->paramInitStepdoubleSpinBox->setToolTip("");
+    uiOptParameters->buttonBox->setToolTip("'OK' to accept (new) variables values. 'Cancel' to regret changes.");
+    uiOptParameters->paramMaxEvalSpinBox->setToolTip("Type 'max evaluations' wanted.");
+    uiOptParameters->paramInitStepdoubleSpinBox->setToolTip("Type the 'initial step length'.");
+    uiOptParameters->paramMinStepdoubleSpinBox->setToolTip("Type the 'minimum step length'.");
+}
+
+void OptParametersDialog::initializeParametersObject(){
+    parameters_.max_evaluations = 0;
+    parameters_.initial_step_length = 0.0;
+    parameters_.minimum_step_length = 0.0;
 }
 
 void OptParametersDialog::updateParametersToUtilities(){

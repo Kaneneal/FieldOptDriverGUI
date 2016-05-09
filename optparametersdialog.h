@@ -31,7 +31,9 @@ private slots:
     void on_buttonBox_accepted(); //!< Click 'OK', send data to Settings object.
     void on_buttonBox_rejected(); //!< Click 'Cancel', reset GUI-data to previous state.
 
+    void setupDialog(); //!< Setup dialog, and set window title. Run setToolTips().
     void setToolTips(); //!< Set tool tip for everything in the parameters dialog.
+    void initializeParametersObject(); //!< To initialize/set the parameters_ object fields when created.
     void updateParametersToUtilities(); //!< Set/show-in-GUI parameters variables.
 
 private:
