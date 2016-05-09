@@ -37,11 +37,21 @@ void MWellDialog::setupMWellDialogs(){
      mWellVariablesDialog = new ModWellVariablesDialog();
 }
 
+void MWellDialog::addWellBlock(){
+    // xyz-values should be added to the table-widget.
+    uiModWell->mWellBlockXBox;
+    uiModWell->mWellBlockYBox;
+    uiModWell->mWellBlockZBox;
+    uiModWell->mWellBlocksTableWidget;
+}
+
 //------------- Model Well -----------------------------------------------------------------------------|
 
 void MWellDialog::on_mWellSetControlsButton_clicked(){
     mWellControlsDialog->setModal(true);
     mWellControlsDialog->exec();
+
+    //if not modal way -  ->show(); and then ->activateWindow();
 }
 
 void MWellDialog::on_mWellSetCompletionsButton_clicked(){
@@ -79,9 +89,10 @@ void MWellDialog::on_mWellDefinitionTypeComboBox_currentTextChanged(const QStrin
        // uiModWell->mWellBOX->setEnabled(false);
     }
 }
-
-
-//------------- END Model Well --------------------------------------------------------------------------|
+void MWellDialog::on_mWellAddBlockButton_clicked(){
+    // xyz-values should be added to the table-widget.
+    addWellBlock();
+}
 
 void MWellDialog::on_buttonBox_accepted(){
     qDebug() << "Clicked 'OK' in the (add) Well dialog.";
@@ -93,3 +104,8 @@ void MWellDialog::on_buttonBox_rejected(){
     //fix to previuos state
 
 }
+
+
+//------------- END Model Well --------------------------------------------------------------------------|
+
+

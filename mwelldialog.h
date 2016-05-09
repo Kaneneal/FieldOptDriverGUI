@@ -35,10 +35,12 @@ private slots:
     void on_mWellSetControlsButton_clicked(); //!< Activate Control dialog (setmodal).
     void on_mWellSetCompletionsButton_clicked(); //!< Activate Completion dialog (setmodal).
     void on_mWellSetVariablesButton_clicked(); //!< Activate Variables dialog (setmodal).
+    void on_mWellAddBlockButton_clicked(); //!< Run addWellBlock(). Add new well block to the tableWigdet.
     void on_buttonBox_accepted(); // NOT FINISHED //!< Click 'OK', send data to Settings object.
     void on_buttonBox_rejected(); //NOT FINISHED//!< Click 'Cancel', reset GUI-data to previous state.
 
     void setupMWellDialogs(); //!< Setup ui, and set window title for mwell dialog. Create Controls, Completions, and Variables objects.
+    void addWellBlock(); //!< Add new well block to Well blocks table widget. Used in on_mWellAddBlockButton_clicked().
 
 
 private:
