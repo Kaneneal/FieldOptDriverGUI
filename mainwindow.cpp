@@ -278,8 +278,9 @@ void MainWindow::on_simChooseBashComButton_clicked(){
     // BashDialog bashDialog;
     // bashDialog.setModal(true);
     // bashDialog.exec();
+
+    //have to have a QJsonObject json_simulator?
      bashDialog->show();
-     bashDialog->raise();
      bashDialog->activateWindow();
 }
 
