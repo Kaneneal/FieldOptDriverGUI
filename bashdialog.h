@@ -7,6 +7,7 @@
 #include <QListWidget>
 
 #include "Utilities/settings/simulator.h"
+#include <QJsonObject>
 
 
 namespace Ui {
@@ -46,6 +47,9 @@ private slots:
 
 private:
     Ui::BashDialog *uiBash;
+    //    Utilities::Settings::Simulator(QJsonObject json_simulator) *simulator_;
+    //noe må ta tak i dataen før det er "lastet" inn et json file.
+    //må lages et simulatorobjekt med json_simulator i seg? settings_.
     Utilities::Settings::Simulator *simulator_;
     QList <QListWidgetItem*> selected_example_items_;//!< list for example items that is added in the bash widget list
 
