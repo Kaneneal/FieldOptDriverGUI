@@ -497,6 +497,8 @@ void MainWindow::setModelVariables(){
     }
     ui->modelControlTimesListWidget->clear();
     ui->modelControlTimesListWidget->addItems(string_control_list);
+
+    mWellDialog->setMWellsVariables(settings_->model()->wells());
 }
 
 void MainWindow::setSimulatorVariables(){
