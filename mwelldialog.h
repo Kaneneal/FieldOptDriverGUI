@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "modwellcompletionsdialog.h"
 #include "modwellcontrolsdialog.h"
@@ -40,7 +41,10 @@ private slots:
     void on_buttonBox_rejected(); //NOT FINISHED//!< Click 'Cancel', reset GUI-data to previous state.
 
     void setupMWellDialogs(); //!< Setup ui, and set window title for mwell dialog. Create Controls, Completions, and Variables objects.
+    void setToolTips(); //!< Set tool tip for all elements in mwell dialog.
+    void initializeMWellDialogElements(); //!< Set, and initialize diverse elements, setHidden, enabled etc.
     void addWellBlock(); //!< Add new well block to Well blocks table widget. Used in on_mWellAddBlockButton_clicked().
+    bool isDefinitionTypeWellBlock(); //!< True if the definition type is Well block (false if 'well spline').
 
 
 private:
