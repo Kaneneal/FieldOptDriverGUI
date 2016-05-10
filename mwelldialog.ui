@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -65,7 +65,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="QLineEdit" name="mWellNameEdit">
            <property name="minimumSize">
             <size>
              <width>141</width>
@@ -105,7 +105,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_2">
+          <widget class="QComboBox" name="mWellTypeComboBox">
            <property name="minimumSize">
             <size>
              <width>141</width>
@@ -323,7 +323,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox">
+            <widget class="QSpinBox" name="mWellHeelXSpinBox">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -374,7 +374,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_2">
+            <widget class="QSpinBox" name="mWellHeelYSpinBox">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -425,7 +425,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_3">
+            <widget class="QSpinBox" name="mWellHeelZSpinBox">
              <property name="minimumSize">
               <size>
                <width>0</width>
