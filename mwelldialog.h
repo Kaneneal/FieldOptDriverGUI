@@ -8,6 +8,8 @@
 #include "modwellcompletionsdialog.h"
 #include "modwellcontrolsdialog.h"
 #include "modwellvariablesdialog.h"
+#include "Utilities/settings/model.h"
+
 
 namespace Ui {
 class MWellDialog;
@@ -26,6 +28,8 @@ class MWellDialog : public QDialog{
 public:
     explicit MWellDialog(QWidget *parent = 0);
     ~MWellDialog();
+
+    void setMWellsVariables(QList<Utilities::Settings::Model::Well> wells); //!< Use when importing, and reset well dialogs to previous state if click 'cancel'.
 
 
 private slots:
@@ -46,7 +50,6 @@ private slots:
     void addWellBlock(); //!< Add new well block to Well blocks table widget. Used in on_mWellAddBlockButton_clicked().
     bool isDefinitionTypeWellBlock(); //!< True if the definition type is Well block (false if 'well spline').
 
-
 private:
     Ui::MWellDialog *uiModWell;
 
@@ -54,6 +57,7 @@ private:
     ModWellControlsDialog *mWellControlsDialog;
     ModWellVariablesDialog *mWellVariablesDialog;
 
+    QList<Utilities::Settings::Model::Well> wells_;
 };
 
 #endif // MWELLDIALOG_H
