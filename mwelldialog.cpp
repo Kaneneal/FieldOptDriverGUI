@@ -112,6 +112,82 @@ bool MWellDialog::isDefinitionTypeWellBlock(){
     }
 }
 
+void MWellDialog::setMWellsVariables(QList<Utilities::Settings::Model::Well> wells){
+    wells_ = wells;
+    //dele opp i flere metoder?!?!?
+    //prøv å laste inn nr. 0 nå i første omgang...
+    uiModWell->mWellNameEdit->setText(wells.at(0).name);
+    switch (wells.at(0).type) {
+    case Utilities::Settings::Model::WellType::Producer:
+        uiModWell->mWellTypeComboBox->setCurrentText("Producer");
+        break;
+    case Utilities::Settings::Model::WellType::Injector:
+        uiModWell->mWellTypeComboBox->setCurrentText("Injector");
+        break;
+    default:
+        break;
+    }
+
+    switch (wells.at(0).definition_type) {
+    case Utilities::Settings::Model::WellDefinitionType::WellBlocks:
+        uiModWell->mWellDefinitionTypeComboBox->setCurrentText("Well Blocks");
+        for (int pos = 0; pos < wells.at(0).well_blocks.size(); pos++) {
+            uiModWell->mWellBlockXBox->setValue(wells.at(0).well_blocks.at(pos).position.i);
+            uiModWell->mWellBlockYBox->setValue(wells.at(0).well_blocks.at(pos).position.j);
+            uiModWell->mWellBlockZBox->setValue(wells.at(0).well_blocks.at(pos).position.k);
+            addWellBlock();
+        }
+        break;
+    case Utilities::Settings::Model::WellDefinitionType::WellSpline:
+        uiModWell->mWellDefinitionTypeComboBox->setCurrentText("Well Spline");
+        for (int pos = 0; pos < wells.at(0).spline_points.size(); pos++) {
+            uiModWell->mWellSplineXBox->setValue(wells.at(0).spline_points.at(pos).x);
+            uiModWell->mWellSplineYBox->setValue(wells.at(0).spline_points.at(pos).y);
+            uiModWell->mWellSplineZBox->setValue(wells.at(0).spline_points.at(pos).z);
+            addWellBlock();
+        }
+        break;
+    default:
+        break;
+    }
+
+    switch (wells.at(0).prefered_phase) {
+    case Utilities::Settings::Model::PreferedPhase::Oil:
+        uiModWell->mWellPrefPhaseComboBox->setCurrentText("Oil");
+        break;
+    case Utilities::Settings::Model::PreferedPhase::Water:
+        uiModWell->mWellPrefPhaseComboBox->setCurrentText("Water");
+        break;
+    case Utilities::Settings::Model::PreferedPhase::Gas:
+        uiModWell->mWellPrefPhaseComboBox->setCurrentText("Gas");
+        break;
+    case Utilities::Settings::Model::PreferedPhase::Liquid:
+        uiModWell->mWellPrefPhaseComboBox->setCurrentText("Liquid");
+        break;
+    default:
+        break;
+    }
+    // QStringLiteral("Component %1").arg(comp_number)
+    uiModWell->mWellHeelXSpinBox->setValue(wells.at(0).heel.i);
+    uiModWell->mWellHeelYSpinBox->setValue(wells.at(0).heel.j);
+    uiModWell->mWellHeelZSpinBox->setValue(wells.at(0).heel.k);
+    uiModWell->mWellBoreRadiusdSpinBox->setValue(wells.at(0).wellbore_radius);
+
+    switch (wells.at(0).direction) {
+    case Utilities::Settings::Model::Direction::X:
+        uiModWell->mWellDirectionComboBox->setCurrentText("X");
+        break;
+    case Utilities::Settings::Model::Direction::Y:
+        uiModWell->mWellDirectionComboBox->setCurrentText("Y");
+        break;
+    case Utilities::Settings::Model::Direction::Z:
+        uiModWell->mWellDirectionComboBox->setCurrentText("Z");
+        break;
+    default:
+        break;
+    }
+}
+
 void MWellDialog::on_mWellSetControlsButton_clicked(){
     mWellControlsDialog->setModal(true);
     mWellControlsDialog->exec();
@@ -174,9 +250,11 @@ void MWellDialog::on_buttonBox_accepted(){
     qDebug() << "Clicked 'OK' in the (add) Well dialog.";
     //send new variables to settings object
     //check tablewidget for well blocks.
+    //update
 }
 
 void MWellDialog::on_buttonBox_rejected(){
     qDebug() << "Clicked 'Cancel' in the (add) Well dialog.";
     //fix to previuos state
+    setMWellsVariables(wells_); //cannot use this without initializing all the values I use in this method. OR System crashes!
 }
