@@ -13,10 +13,15 @@ OptObjectiveDialog::~OptObjectiveDialog(){
 
 void OptObjectiveDialog::setupDialog(){
     uiOptObjective->setupUi(this);
-    this->setWindowTitle("Optimizer - Objective");
+    this->setWindowTitle("Optimizer – Objective");
+    setToolTips();
 }
-
-
+void OptObjectiveDialog::setToolTips(){
+    uiOptObjective->buttonBox->setToolTip("'OK' to accept (new) objective values. 'Cancel' to regret changes.");
+    uiOptObjective->optObjAddComponentButton->setToolTip("Add objective (item) to the list.");
+    uiOptObjective->optObjRemoveComponentButton->setToolTip("Remove selected objective (item) from the list.");
+    uiOptObjective->optObjWeightedSumListWidget->setToolTip("List of objective weighted sum item(s).");
+}
 void OptObjectiveDialog::on_buttonBox_accepted(){
     qDebug() << "Clicked 'OK' in the Objective dialog.";
     //UPDATE - ALL INFORMATION HAS NEW STATE
@@ -27,7 +32,6 @@ void OptObjectiveDialog::on_buttonBox_accepted(){
 void OptObjectiveDialog::on_buttonBox_rejected(){
     qDebug() << "Clicked 'Cancel' in the Objective dialog.";
     //RESET ALL INFORMATION TO FORMER STATE (use/load new_component_list)
-
 
 }
 

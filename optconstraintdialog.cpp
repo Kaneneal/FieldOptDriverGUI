@@ -25,9 +25,9 @@ void OptConstraintDialog::on_buttonBox_rejected(){
 
 void OptConstraintDialog::setupDialog(){
     uiOptConstraint->setupUi(this);
-    this->setWindowTitle("Optimizer - Constraints");
+    this->setWindowTitle("Optimizer – Constraints");
     setToolTips();
-
+    uiOptConstraint->optConChangeNameEdit->setPlaceholderText("Constraint name");
     connect(uiOptConstraint->optConstraintListWidget,SIGNAL(currentTextChanged(QString)), uiOptConstraint->optConItemSelectedLabel,SLOT(setText(QString)));
    //connect(uiOptConstraint->optConstraintListWidget,SIGNAL(currentTextChanged(QString)), uiOptConstraint->optConChangeNameEdit, SLOT(setText(QString)));
     initializeConPropertiesDialog();
@@ -35,8 +35,10 @@ void OptConstraintDialog::setupDialog(){
 
 void OptConstraintDialog::setToolTips(){
     uiOptConstraint->optConWellNameComboBox->setToolTip("Name of well");
+    uiOptConstraint->buttonBox->setToolTip("'OK' to accept (new) constraints values. 'Cancel' to regret changes.");
     uiOptConstraint->optConstraintListWidget->setToolTip("List of current well's constraints");
-
+    uiOptConstraint->optConAddButton->setToolTip("Add constraint (item) to the list.");
+    uiOptConstraint->optConRemoveButton->setToolTip("Remove selected (item) constraint from the list.");
     //MORE
 }
 

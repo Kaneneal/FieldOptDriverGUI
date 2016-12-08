@@ -6,53 +6,229 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
-    <height>727</height>
+    <width>603</width>
+    <height>706</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+   <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>370</width>
-    <height>0</height>
+    <width>603</width>
+    <height>706</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>594</width>
-    <height>16777215</height>
+    <width>603</width>
+    <height>15643215</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_6">
+  <layout class="QVBoxLayout" name="verticalLayout_8">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_10">
+    <layout class="QHBoxLayout" name="horizontalLayout_19">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="horizontalLayout_18">
          <item>
           <widget class="QLabel" name="label">
-           <property name="minimumSize">
-            <size>
-             <width>111</width>
-             <height>0</height>
-            </size>
-           </property>
            <property name="text">
-            <string>Name:</string>
+            <string>Wells:</string>
            </property>
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer_6">
+          <spacer name="horizontalSpacer_18">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QListWidget" name="mWellListWidget">
+         <property name="minimumSize">
+          <size>
+           <width>230</width>
+           <height>27</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>230</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="tabKeyNavigation">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLineEdit" name="mWellNameEdit">
+           <property name="minimumSize">
+            <size>
+             <width>160</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>175</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="mWellAddButton">
+           <property name="minimumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="mWellRemoveButton">
+           <property name="minimumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>27</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>150</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>5</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="Line" name="line_5">
+         <property name="minimumSize">
+          <size>
+           <width>5</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>15</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <item>
+          <widget class="QLabel" name="mWellCurrNameLabel">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Current well selected:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_9">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -65,16 +241,26 @@
           </spacer>
          </item>
          <item>
-          <widget class="QLineEdit" name="mWellNameEdit">
+          <widget class="QLabel" name="mWellNoItemSelectedLabel">
            <property name="minimumSize">
             <size>
-             <width>141</width>
-             <height>0</height>
+             <width>134</width>
+             <height>27</height>
             </size>
+           </property>
+           <property name="text">
+            <string>&lt;No item selected &gt;</string>
            </property>
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -82,12 +268,18 @@
           <widget class="QLabel" name="label_2">
            <property name="minimumSize">
             <size>
-             <width>111</width>
+             <width>150</width>
              <height>0</height>
             </size>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>111</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
-            <string>Type:</string>
+            <string>Well type:</string>
            </property>
           </widget>
          </item>
@@ -96,9 +288,12 @@
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>40</width>
+             <width>75</width>
              <height>20</height>
             </size>
            </property>
@@ -130,6 +325,18 @@
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
           <widget class="QLabel" name="label_5">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>111</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Definition type:</string>
            </property>
@@ -176,7 +383,7 @@
           <widget class="QLabel" name="mWellPrefPhaseLabel">
            <property name="minimumSize">
             <size>
-             <width>114</width>
+             <width>150</width>
              <height>0</height>
             </size>
            </property>
@@ -263,7 +470,7 @@
               <widget class="QLabel" name="mWellHeelLabel">
                <property name="minimumSize">
                 <size>
-                 <width>40</width>
+                 <width>150</width>
                  <height>27</height>
                 </size>
                </property>
@@ -454,6 +661,12 @@
         <layout class="QHBoxLayout" name="horizontalLayout_14">
          <item>
           <widget class="QLabel" name="mWellBoreRadiusLabel">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="text">
             <string>Wellbore radius:</string>
            </property>
@@ -483,7 +696,7 @@
           <widget class="QLabel" name="mWellDirectionLabel">
            <property name="minimumSize">
             <size>
-             <width>71</width>
+             <width>150</width>
              <height>0</height>
             </size>
            </property>
@@ -545,7 +758,7 @@
           <widget class="QLabel" name="mWellBlocksLabel">
            <property name="minimumSize">
             <size>
-             <width>100</width>
+             <width>150</width>
              <height>0</height>
             </size>
            </property>
@@ -558,7 +771,7 @@
           <widget class="QLabel" name="mWellSplineLabel">
            <property name="minimumSize">
             <size>
-             <width>100</width>
+             <width>150</width>
              <height>0</height>
             </size>
            </property>
@@ -707,6 +920,15 @@
            <property name="sizeAdjustPolicy">
             <enum>QAbstractScrollArea::AdjustToContents</enum>
            </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>false</bool>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
            <property name="showGrid">
             <bool>true</bool>
            </property>
@@ -792,6 +1014,12 @@
              <height>0</height>
             </size>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>141</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Set Controls...</string>
            </property>
@@ -832,19 +1060,6 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
-          <widget class="QCheckBox" name="mWellSpecVariablesCheckBox">
-           <property name="minimumSize">
-            <size>
-             <width>269</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Want to specify array for variables?</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <spacer name="horizontalSpacer_10">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -856,6 +1071,19 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="mWellSpecVariablesCheckBox">
+           <property name="minimumSize">
+            <size>
+             <width>269</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>I want to specify array for variables</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -894,19 +1122,6 @@
        </item>
       </layout>
      </item>
-     <item>
-      <spacer name="horizontalSpacer_9">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
     </layout>
    </item>
    <item>
@@ -920,26 +1135,13 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>20</height>
       </size>
      </property>
     </spacer>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_13">
-     <item>
-      <spacer name="horizontalSpacer_12">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="orientation">
@@ -953,6 +1155,8 @@
     </layout>
    </item>
   </layout>
+  <zorder></zorder>
+  <zorder>verticalSpacer</zorder>
  </widget>
  <resources/>
  <connections>

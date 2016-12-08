@@ -7,11 +7,17 @@ ModWellCompletionsDialog::ModWellCompletionsDialog(QWidget *parent) :
     QDialog(parent),
     uiCompletions(new Ui::ModWellCompletionsDialog){
     uiCompletions->setupUi(this);
-    this->setWindowTitle("Model - Well - Completions");
+    this->setWindowTitle("Model – Well – Completions");
+    setToolTips();
 }
 
 ModWellCompletionsDialog::~ModWellCompletionsDialog(){
     delete uiCompletions;
+}
+
+void ModWellCompletionsDialog::setToolTips(){
+    uiCompletions->modWellCompletionButtonBox->setToolTip("'OK' to accept (new) completions values. 'Cancel' to regret changes.");
+
 }
 
 void ModWellCompletionsDialog::on_modWellCompletionButtonBox_accepted(){
@@ -41,3 +47,5 @@ void ModWellCompletionsDialog::on_modWellCompRemoveButton_clicked(){
     //REMOVE item from completionListWidget (selected) og i temp_completion_list
     //compl_number = compl_number -1;
 }
+
+

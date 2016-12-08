@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>620</width>
-    <height>408</height>
+    <width>655</width>
+    <height>423</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,9 +16,15 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>655</width>
+    <height>0</height>
+   </size>
+  </property>
   <property name="maximumSize">
    <size>
-    <width>748</width>
+    <width>655</width>
     <height>16777215</height>
    </size>
   </property>
@@ -73,6 +79,13 @@
     </layout>
    </item>
    <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer_3">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -87,13 +100,6 @@
       </size>
      </property>
     </spacer>
-   </item>
-   <item>
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -130,6 +136,9 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <item>
+          <widget class="QLineEdit" name="optConChangeNameEdit"/>
+         </item>
          <item>
           <widget class="QPushButton" name="optConAddButton">
            <property name="minimumSize">
@@ -168,9 +177,6 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLineEdit" name="optConChangeNameEdit"/>
-         </item>
         </layout>
        </item>
       </layout>
@@ -180,9 +186,12 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
+         <width>10</width>
          <height>20</height>
         </size>
        </property>
@@ -191,20 +200,18 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <spacer name="verticalSpacer_2">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Constraint components:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_2">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>27</width>
-           <height>17</height>
-          </size>
-         </property>
-        </spacer>
+        </widget>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -249,7 +256,7 @@
             </size>
            </property>
            <property name="text">
-            <string>&lt;no item selected &gt;</string>
+            <string>&lt;No item selected &gt;</string>
            </property>
           </widget>
          </item>
@@ -261,7 +268,7 @@
           <widget class="QLabel" name="optConTypeLabel">
            <property name="minimumSize">
             <size>
-             <width>50</width>
+             <width>200</width>
              <height>27</height>
             </size>
            </property>
@@ -327,7 +334,7 @@
           <widget class="QLabel" name="optConMaxLabel">
            <property name="minimumSize">
             <size>
-             <width>50</width>
+             <width>200</width>
              <height>0</height>
             </size>
            </property>
@@ -376,7 +383,7 @@
           <widget class="QLabel" name="optConMinLabel">
            <property name="minimumSize">
             <size>
-             <width>50</width>
+             <width>200</width>
              <height>0</height>
             </size>
            </property>
@@ -426,9 +433,15 @@
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QLabel" name="optConSplinePointsTypeLabel">
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
-             <width>201</width>
+             <width>200</width>
              <height>16777215</height>
             </size>
            </property>
@@ -483,7 +496,7 @@
           <widget class="QLabel" name="optConSplinePointsLimitsLabel">
            <property name="minimumSize">
             <size>
-             <width>170</width>
+             <width>200</width>
              <height>0</height>
             </size>
            </property>
@@ -574,7 +587,7 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>36</width>
+         <width>0</width>
          <height>231</height>
         </size>
        </property>

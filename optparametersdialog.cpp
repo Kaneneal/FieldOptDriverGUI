@@ -32,14 +32,14 @@ void OptParametersDialog::on_buttonBox_rejected(){
 
 void OptParametersDialog::setupDialog(){
     uiOptParameters->setupUi(this);
-    this->setWindowTitle("Optimizer - Parameters");
+    this->setWindowTitle("Optimizer – Parameters");
     setToolTips();
     initializeParametersObject();
 }
 
 void OptParametersDialog::setToolTips(){
     // tool tips for the spin boxes, and variables
-    uiOptParameters->buttonBox->setToolTip("'OK' to accept (new) variables values. 'Cancel' to regret changes.");
+    uiOptParameters->buttonBox->setToolTip("'OK' to accept (new) parameters values. 'Cancel' to regret changes.");
     uiOptParameters->paramMaxEvalSpinBox->setToolTip("Type 'max evaluations' wanted.");
     uiOptParameters->paramInitStepdoubleSpinBox->setToolTip("Type the 'initial step length'.");
     uiOptParameters->paramMinStepdoubleSpinBox->setToolTip("Type the 'minimum step length'.");

@@ -4,6 +4,9 @@
 #include <QDialog>
 #include <QDebug>
 
+#include "Utilities/settings/model.h"
+
+
 namespace Ui {
 class ModWellVariablesDialog;
 }
@@ -19,6 +22,8 @@ private slots:
     //Signal methods
     void on_buttonBox_accepted(); //!< Click 'Ok' on Variables dialog.
     void on_buttonBox_rejected(); //!< Click 'Cancel' on Variables dialog.
+
+    void setToolTips(); //!< Set tool tip for (model well) variables elements
 
 private:
     Ui::ModWellVariablesDialog *uiVariables;

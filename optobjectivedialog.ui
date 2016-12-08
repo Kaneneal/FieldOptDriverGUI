@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>653</width>
-    <height>449</height>
+    <width>671</width>
+    <height>465</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,9 +16,15 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>670</width>
+    <height>0</height>
+   </size>
+  </property>
   <property name="maximumSize">
    <size>
-    <width>770</width>
+    <width>671</width>
     <height>16777215</height>
    </size>
   </property>
@@ -99,7 +105,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>13</height>
+       <height>10</height>
       </size>
      </property>
     </spacer>
@@ -121,7 +127,7 @@
           <number>1</number>
          </property>
          <property name="text">
-          <string>List of Weigted Sum Components:</string>
+          <string>List of Weighted Sum Components:</string>
          </property>
         </widget>
        </item>
@@ -191,7 +197,7 @@
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>40</width>
+             <width>30</width>
              <height>20</height>
             </size>
            </property>
@@ -206,9 +212,12 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
+         <width>10</width>
          <height>20</height>
         </size>
        </property>
@@ -236,13 +245,75 @@
            <height>0</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
          <property name="text">
-          <string>Weighted Sum Components:</string>
+          <string>Component parameters:</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="toolTip">
+            <string>Current weighted sum component selected</string>
+           </property>
+           <property name="text">
+            <string>Current WS component selected:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>27</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>The current selected weighted sum component (list item)</string>
+           </property>
+           <property name="text">
+            <string>&lt;No selected item&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_8">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>5</height>
+          </size>
+         </property>
+        </spacer>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -316,7 +387,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>8</height>
+           <height>5</height>
           </size>
          </property>
         </spacer>
@@ -393,7 +464,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>8</height>
+           <height>5</height>
           </size>
          </property>
         </spacer>
@@ -404,7 +475,7 @@
           <widget class="QLabel" name="optObjPropertyLabel">
            <property name="minimumSize">
             <size>
-             <width>70</width>
+             <width>80</width>
              <height>0</height>
             </size>
            </property>
@@ -426,7 +497,7 @@
            </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>40</width>
+             <width>0</width>
              <height>20</height>
             </size>
            </property>
@@ -465,7 +536,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>8</height>
+           <height>5</height>
           </size>
          </property>
         </spacer>
@@ -473,17 +544,20 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
-          <widget class="QCheckBox" name="optObjectiveIsFieldPropCheckBox">
-           <property name="text">
-            <string>Is it a FIELD property?</string>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-           <property name="checked">
-            <bool>true</bool>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
            </property>
-           <property name="tristate">
-            <bool>false</bool>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>80</width>
+             <height>20</height>
+            </size>
            </property>
-          </widget>
+          </spacer>
          </item>
          <item>
           <spacer name="horizontalSpacer_11">
@@ -498,6 +572,19 @@
            </property>
           </spacer>
          </item>
+         <item>
+          <widget class="QCheckBox" name="optObjectiveIsFieldPropCheckBox">
+           <property name="text">
+            <string>This is a FIELD property</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <property name="tristate">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
@@ -511,7 +598,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>8</height>
+           <height>5</height>
           </size>
          </property>
         </spacer>
@@ -525,7 +612,7 @@
            </property>
            <property name="minimumSize">
             <size>
-             <width>40</width>
+             <width>80</width>
              <height>0</height>
             </size>
            </property>
@@ -576,25 +663,12 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>20</height>
+           <height>32</height>
           </size>
          </property>
         </spacer>
        </item>
       </layout>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
     </layout>
    </item>

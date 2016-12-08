@@ -19,7 +19,7 @@ BashDialog::~BashDialog(){
 
 void BashDialog::setupBashDialog(){
     uiBash->setupUi(this);
-    this->setWindowTitle("BASH Commands");
+    this->setWindowTitle("Simualtor - BASH Commands");
     uiBash->bashCustomLineEdit->setPlaceholderText("Enter customized BASH command");
     //simulator_ = new Utilities::Settings::Simulator( ); er ikke riktig, men lurer på om må noe liknende?
     setToolTips();
@@ -118,7 +118,7 @@ void BashDialog::addItem(){
 }
 
 
-
+//NEED TO DO SOME TESTING: CANNOT ADD ALREADY EXISTING ITEM! AND IF EXIST IN EXAMPLE LIST, TAKE IT FROM THERE.
 void BashDialog::addCustomItem(){
     QString custom_item;
     custom_item = uiBash->bashCustomLineEdit->text();

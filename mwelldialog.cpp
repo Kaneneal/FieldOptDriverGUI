@@ -30,8 +30,9 @@ void MyDialog::reject()
 void MWellDialog::setupMWellDialogs(){
     //MWellDialog
      uiModWell->setupUi(this);
-     this->setWindowTitle("Model - Well");
+     this->setWindowTitle("Model – Well");
      setToolTips();
+     uiModWell->mWellNameEdit->setPlaceholderText("Well name");
      initializeMWellDialogElements();
      mWellControlsDialog = new ModWellControlsDialog();
      mWellCompletionsDialog = new ModWellCompletionsDialog();
@@ -39,6 +40,12 @@ void MWellDialog::setupMWellDialogs(){
 }
 
 void MWellDialog::setToolTips(){
+    uiModWell->buttonBox->setToolTip("'OK' to accept (new) wells and values. 'Cancel' to regret changes.");
+    uiModWell->mWellNameEdit->setToolTip("Name of (current) well.");
+    uiModWell->mWellListWidget->setToolTip("List of well(s).");
+    uiModWell->mWellAddButton->setToolTip("Add well (item) to the list.");
+    uiModWell->mWellRemoveButton->setToolTip("Remove selected well (item) from the list.");
+
     uiModWell->mWellBlockXBox->setToolTip("Well block i-value.");
     uiModWell->mWellBlockYBox->setToolTip("Well block j-value.");
     uiModWell->mWellBlockZBox->setToolTip("Well block k-value.");
@@ -114,8 +121,8 @@ bool MWellDialog::isDefinitionTypeWellBlock(){
 
 void MWellDialog::setMWellsVariables(QList<Utilities::Settings::Model::Well> wells){
     wells_ = wells;
-    //dele opp i flere metoder?!?!?
-    //prøv å laste inn nr. 0 nå i første omgang...
+    //Split up in functions
+    //For now, using the element at position 0.
     uiModWell->mWellNameEdit->setText(wells.at(0).name);
     switch (wells.at(0).type) {
     case Utilities::Settings::Model::WellType::Producer:
@@ -150,6 +157,12 @@ void MWellDialog::setMWellsVariables(QList<Utilities::Settings::Model::Well> wel
     default:
         break;
     }
+    uiModWell->mWellBlockXBox->setValue(0);
+    uiModWell->mWellBlockYBox->setValue(0);
+    uiModWell->mWellBlockZBox->setValue(0);
+    uiModWell->mWellSplineXBox->setValue(0.0);
+    uiModWell->mWellSplineYBox->setValue(0.0);
+    uiModWell->mWellSplineZBox->setValue(0.0);
 
     switch (wells.at(0).prefered_phase) {
     case Utilities::Settings::Model::PreferedPhase::Oil:
@@ -186,12 +199,19 @@ void MWellDialog::setMWellsVariables(QList<Utilities::Settings::Model::Well> wel
     default:
         break;
     }
+
+    if (wells.at(0).variables.size() > 0){
+        uiModWell->mWellSpecVariablesCheckBox->setChecked(true);
+    }else{
+        uiModWell->mWellSpecVariablesCheckBox->setChecked(false);
+    }
 }
 
 void MWellDialog::on_mWellSetControlsButton_clicked(){
     mWellControlsDialog->setModal(true);
     mWellControlsDialog->exec();
     //if not using modal way -  ->show(); and then ->activateWindow();
+    mWellControlsDialog->setModWellControlsVariables(wells_);
 }
 
 void MWellDialog::on_mWellSetCompletionsButton_clicked(){
@@ -199,15 +219,10 @@ void MWellDialog::on_mWellSetCompletionsButton_clicked(){
     mWellCompletionsDialog->exec();
 }
 
-
-void MWellDialog::on_mWellSpecVariablesCheckBox_clicked(){
-    if (uiModWell->mWellSpecVariablesCheckBox->isChecked()){
-        uiModWell->mWellSetVariablesButton->setEnabled(true);
-    }
-    else{
-        uiModWell->mWellSetVariablesButton->setEnabled(false);
-    }
+void MWellDialog::on_mWellSpecVariablesCheckBox_toggled(bool checked){
+    uiModWell->mWellSetVariablesButton->setEnabled(checked);
 }
+
 
 void MWellDialog::on_mWellSetVariablesButton_clicked(){
     mWellVariablesDialog->setModal(true);
@@ -258,3 +273,4 @@ void MWellDialog::on_buttonBox_rejected(){
     //fix to previuos state
     setMWellsVariables(wells_); //cannot use this without initializing all the values I use in this method. OR System crashes!
 }
+

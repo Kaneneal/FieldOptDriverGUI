@@ -22,7 +22,7 @@ MainWindow::~MainWindow(){
 
 void MainWindow::setupMainWindow(){
     ui->setupUi(this);
-    this->setWindowTitle("FieldOpt - "+ ui->tabWidget->tabText(0)); //FieldOpt - global
+    this->setWindowTitle("FieldOpt Driver Config – "+ ui->tabWidget->tabText(0) + " tab"); //FieldOpt - global
 
     ui->tabWidget->setCurrentIndex(0); // Sets the initial tab to be the global tab
     ui->optTypeLine->setText(ui->optTypeComboBox->currentText());
@@ -53,51 +53,51 @@ void MainWindow::setupAboutDialog(){
 //----------Design GUI methods ---------------------------------------------------------------------------|
 void MainWindow::setToolTips(){
     //Global - tool tip
-    ui->globalNameEdit->setToolTip("Used to generate output file name(s)");
-    ui->globalPathEdit->setToolTip("Path - Location for the output files");
-    ui->globalBrowseButton->setToolTip("Browse - Find your path");
+    ui->globalNameEdit->setToolTip("Name – Used to generate output file name(s)");
+    ui->globalPathEdit->setToolTip("Path – Location for the output files");
+    ui->globalBrowseButton->setToolTip("Browse – Find your path");
 
     ui->globalOutputPathLine->setToolTip("Path to the output files");
-    ui->globalOutputPathEditButton->setToolTip("Edit path");
+    ui->globalOutputPathEditButton->setToolTip("Edit output path");
 
     //Model - tool tip
-    ui->modelPathEdit->setToolTip("Path - Location for the grid file");
-    ui->modelBrowseButton->setToolTip("Browse - Find the path to the grid file (.GRID or .EGRID)");
+    ui->modelPathEdit->setToolTip("Path – Location for the grid file (.GRID or .EGRID)");
+    ui->modelBrowseButton->setToolTip("Browse – Find the path to the grid file (.GRID or .EGRID)");
 
     ui->modelGridPathLine->setToolTip("Path to the model grid file");
-    ui->modelGridPathEditButton->setToolTip("Edit path");
+    ui->modelGridPathEditButton->setToolTip("Edit grid path");
 
     ui->modelControlTimesListWidget->setToolTip("List of Control times");
     ui->modelAddControlTimeButton->setToolTip("Add control time (item) to the list");
-    ui->modelRemoveControlTimeButton->setToolTip("Remove selected (item) control time");
+    ui->modelRemoveControlTimeButton->setToolTip("Remove selected control (item) time");
     ui->modelControlTimesSpinBox->setToolTip("Control time (Integer)");
 
 
     //Simulator tool tip
-    ui->simPathEdit->setToolTip("Path - Location for the driver file");
-    ui->simBrowseButton->setToolTip("Browse - Find the path to the driver file (.DATA)");
+    ui->simPathEdit->setToolTip("Path – Location for the driver file");
+    ui->simBrowseButton->setToolTip("Browse – Find the path to the driver file (.DATA)");
 
     ui->simDriverPathLine->setToolTip("Path to the driver file");
-    ui->simDriverPathEditButton->setToolTip("Edit path");
+    ui->simDriverPathEditButton->setToolTip("Edit driver file path");
 
     //Optimizer tool tip
-    ui->optTypeLine->setToolTip(" The opt algorithm type");
-    ui->optTypeEditButton->setToolTip("Set/change type");
+    ui->optTypeLine->setToolTip("The optimizer algorithm type");
+    ui->optTypeEditButton->setToolTip("Edit optimizer type");
 
     //Tabs - tool tip
-    ui->tabWidget->setTabToolTip(0,"global - Set name of the generated output files, the path, and choose debugging mode or not"); //!< For "global tab"// Switch to global settings
-    ui->tabWidget->setTabToolTip(1,"Set model settings, variables and parameters for reservoir and wells"); //!< For "model tab" // Switch to model
-    ui->tabWidget->setTabToolTip(2,"Set simulator type, how to execute the sim., and define the driver path."); //!< For "simulator tab" //Switch to simulator
-    ui->tabWidget->setTabToolTip(3,"Set optimizer type, settings, and parameters"); //!< For "optimizer tab" // Switch to optimizer
+    ui->tabWidget->setTabToolTip(0,"Global settings – Set name of the generated output files, the path, and choose to have bookkeeping or not"); //!< For "global tab"// Switch to global settings
+    ui->tabWidget->setTabToolTip(1,"Model settings – Set model settings, variables and parameters for reservoir and wells"); //!< For "model tab" // Switch to model
+    ui->tabWidget->setTabToolTip(2,"Simulator settings – Set simulator type, how to execute the sim., and define the driver path."); //!< For "simulator tab" //Switch to simulator
+    ui->tabWidget->setTabToolTip(3,"Optimizer settings – Set optimizer type, settings, and parameters"); //!< For "optimizer tab" // Switch to optimizer
 
     //JSON path - tool tip
-    ui->jsonPathLine->setToolTip("Path to the JSON file");
+    ui->jsonPathLine->setToolTip("Path to the imported JSON file");
     ui->jsonPathEditButton->setToolTip("Edit path");
 }
 
 void MainWindow::setupPlaceholderTexts(){
     //Global
-    ui->globalNameEdit->setPlaceholderText("Enter name to be used when generating output file names");
+    ui->globalNameEdit->setPlaceholderText("Enter name to be used when generating output file name(s)");
     ui->globalPathEdit->setPlaceholderText("Path to the output files ");
     //Model
     ui->modelPathEdit->setPlaceholderText("Path to the grid file (.GRID or .EGRID)");
@@ -106,7 +106,7 @@ void MainWindow::setupPlaceholderTexts(){
 }
 
 void MainWindow::on_tabWidget_currentChanged(int index){
-    this->setWindowTitle("FieldOpt - "+ ui->tabWidget->tabText(index));
+    this->setWindowTitle("FieldOpt Driver Config – "+ ui->tabWidget->tabText(index) + " tab");
 }
 
 void MainWindow::connectAllStuff(){
@@ -177,14 +177,14 @@ void MainWindow::on_globalBrowseButton_clicked(){
    // browseFileDialog->setFocus();
     if(!temp_output_directory.isNull()){ //!< if you chose a path with the file dialog, the line edit is changed. If not, nothing happens
         ui->globalPathEdit->setText(temp_output_directory); //!< Sets the text in the lineEdit field to be the choosen path to the directory
-        settings_->simulator()->set_output_directory(temp_output_directory);
-        settings_->set_output_directory(temp_output_directory);
+        //settings_->simulator()->set_output_directory(temp_output_directory);
+        //settings_->set_output_directory(temp_output_directory);
     }
 }
 
 void MainWindow::on_globalBookkeepCheckBox_toggled(bool checked){
     if (!checked){
-        ui->globalBookkeepTolerancedSpinBox->setValue(0.0);
+        ui->globalBookkeepTolerancedSpinBox->setValue(0.0); // Reset the bookkeeping tolerance to 0.0 if unchecked.
     }
 }
 
@@ -196,6 +196,15 @@ void MainWindow::on_globalPathEdit_textChanged(const QString &output_directory){
     settings_->set_output_directory(output_directory);
     //settings_->simulator()->set_output_directory(output_directory);
     //KANSKJE sette direkte fra (evt. sette begge?)
+
+    if(output_directory.isEmpty()){ // if there is no output directory name, the overview elements are disabled, enabled otherwise
+        ui->globalOutputPathLine->setEnabled(false);
+        ui->globalOutputPathLabel->setEnabled(false);
+    }
+    else{
+        ui->globalOutputPathLine->setEnabled(true);
+        ui->globalOutputPathLabel->setEnabled(true);
+    }
 }
 
 void MainWindow::on_globalBookkeepTolerancedSpinBox_valueChanged(double bookkeep_tolerance){
@@ -230,6 +239,16 @@ void MainWindow::on_modelTypeComboBox_currentTextChanged(const QString &model_gr
 
 void MainWindow::on_modelPathEdit_textChanged(const QString &model_grid_path){
     settings_->model()->set_reservoir_grid_path(model_grid_path);
+
+    if(model_grid_path.isEmpty()){ // if there is no model grid path, the overview elements are disabled, enabled otherwise
+        ui->modelGridPathLabel->setEnabled(false);
+        ui->modelGridPathLine->setEnabled(false);
+
+    }
+    else{
+        ui->modelGridPathLabel->setEnabled(true);
+        ui->modelGridPathLine->setEnabled(true);
+    }
 }
 
 void MainWindow::on_modelAddControlTimeButton_clicked(){
@@ -251,7 +270,6 @@ void MainWindow::on_modelRemoveControlTimeButton_clicked(){
     //update control times list to Utilities
     updateModelControlTimesToUtilities();
 }
-
 //-------------END Model actions-----------------------------------------------------------------------------------------------------|
 
 
@@ -260,7 +278,7 @@ void MainWindow::on_modelRemoveControlTimeButton_clicked(){
 void MainWindow::on_simBrowseButton_clicked(){
    // browseFileDialog.setLabelText (QFileDialog::Accept, "Choose" );//!< Sets the button text to "Choose" in the file dialog -DONT WORK
 
-    //Put here in case the edit button is clicked, the focus changes
+    //In case the edit button is clicked, the focus changes
     ui->tabWidget->setCurrentIndex(2); //!< Sets the current tab to "simulator" tab
     ui->simPathEdit->setFocus(); //!< The driver path is set to current focus
 
@@ -297,6 +315,16 @@ void MainWindow::on_simTypeComboBox_currentTextChanged(const QString &sim_type){
 void MainWindow::on_simPathEdit_textChanged(const QString &driver_path){
     settings_->set_driver_path(driver_path);
    //settings_->simulator()->set_driver_file_path(driver_path);
+
+    if(driver_path.isEmpty()){ // if there is no driver path, the overview elements are disabled, enabled otherwise
+        ui->simDriverPathLabel->setEnabled(false);
+        ui->simDriverPathLine->setEnabled(false);
+
+    }
+    else{
+        ui->simDriverPathLabel->setEnabled(true);
+        ui->simDriverPathLine->setEnabled(true);
+    }
 }
 
 //-------------END simulator actions-------------------------------------------------------------------------------------------------|
@@ -363,10 +391,10 @@ void MainWindow::on_optModeComboBox_currentTextChanged(const QString &opt_mode){
 void MainWindow::on_actionOpen_JSON_file_triggered(){
 
     if(ui->globalPathEdit->text().size() == 0){
-       QMessageBox::information(this, "Missing output path", "Please fill out the path to the output directory and/or browse, in the Global tab before opening the JSON file.", QMessageBox::Ok, 0);
+       QMessageBox::information(this, "Missing output path", "Please fill out the path to the output directory and/or browse in the Global tab before opening the JSON file.", QMessageBox::Ok, 0);
         return;
     }
-    // browseFileDialog.setLabelText (QFileDialog::Accept, "Import" );//!< Sets the button text to "Import" in the file dialog må kjøres egen .exec for å kjøre denne spesielle
+    // browseFileDialog.setLabelText (QFileDialog::Accept, "Import" );//!< Sets the button text to "Import" in the file dialog(not working unless execute own .exec)
       QString tempPreJSONPath = browseFileDialog->getOpenFileName(this, tr("Choose JSON file to import"), "/home", tr("JSON (*.json)"));
 
       if(!tempPreJSONPath.isEmpty()){ // if you choose a path with the file dialog, the line edit is changed. If not, nothing happens
@@ -385,6 +413,10 @@ void MainWindow::on_actionSave_triggered(){
     //saves all changes into the .JSON file.
     //run a method (create and/or update .JSON file)
     saveJSONfile();
+}
+
+void MainWindow::on_actionSave_As_triggered(){
+    //Should contain way to Save the current file as another filename.
 }
 
 // EXIT the program
@@ -418,7 +450,7 @@ void MainWindow::closeEvent (QCloseEvent *event){
     //check if saved... if not, ask if you want to save. then ->
 
     QMessageBox::StandardButton replyBtn;
-    replyBtn= QMessageBox::question( this, "FieldOpt", tr("Are you sure you want to quit?\n"), QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
+    replyBtn= QMessageBox::question( this, "FieldOpt Driver Config", tr("Are you sure you want to quit?\n"), QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes, QMessageBox::Yes);
     if (replyBtn != QMessageBox::Yes) {
         event->ignore();
     } else {
@@ -498,7 +530,7 @@ void MainWindow::setModelVariables(){
     ui->modelControlTimesListWidget->clear();
     ui->modelControlTimesListWidget->addItems(string_control_list);
 
-    mWellDialog->setMWellsVariables(settings_->model()->wells());
+    mWellDialog->setMWellsVariables(settings_->model()->wells());//må fikse på metoden her... skal ha inn direkte og endre direkte?
 }
 
 void MainWindow::setSimulatorVariables(){
@@ -559,5 +591,6 @@ void MainWindow::setOptimizerVariables(){
 
 
 //------ END Set/show-in-GUI methods ------------------------------------------------------------------------------------------------------|
+
 
 

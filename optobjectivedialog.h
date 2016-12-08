@@ -40,6 +40,7 @@ private slots:
 
 
     void setupDialog(); //!< Setup ui, and sets window title
+    void setToolTips();//!< Set tool tip for elements in objective dialog
     void setOptObjectiveWeightedSumComponents(double coefficient, const QString &property, int time_step );//!< Set coeffisient, property, time step values in GUI. Used in the public setWeigthedSumComponent.
     void updateComponentInformation(const QString current_comp); // Have to use for updating component information while user changes data. To set current comp information
     void addComponent(); //!< Help method run in the add component on clicked

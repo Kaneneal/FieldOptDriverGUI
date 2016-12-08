@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QDebug>
 
+#include "Utilities/settings/model.h"
+
 namespace Ui {
 class ModWellCompletionsDialog;
 }
@@ -22,6 +24,8 @@ private slots:
     void on_modWellCompletionButtonBox_rejected(); //!< Click 'Cancel'. Set info in the dialog to previous state.
     void on_modWellCompAddButton_clicked(); //!< Add a completion to the list.
     void on_modWellCompRemoveButton_clicked(); //!< Remove selected/current (item)completion from the list.
+
+    void setToolTips(); //!< Set tool tips for dialog elements.
 
 private:
     Ui::ModWellCompletionsDialog *uiCompletions;

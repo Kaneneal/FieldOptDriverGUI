@@ -28,7 +28,7 @@ class MWellDialog : public QDialog{
 public:
     explicit MWellDialog(QWidget *parent = 0);
     ~MWellDialog();
-
+    // want to use directly .... follow Einar's tip
     void setMWellsVariables(QList<Utilities::Settings::Model::Well> wells); //!< Use when importing, and reset well dialogs to previous state if click 'cancel'.
 
 
@@ -36,7 +36,7 @@ private slots:
 
     //Signal methods (reacts to user action).
     void on_mWellDefinitionTypeComboBox_currentTextChanged(const QString &def_type);//!< Enable/disable elements bades in definition type.
-    void on_mWellSpecVariablesCheckBox_clicked(); //!< Enable/disable Variables elements based on user action.
+    void on_mWellSpecVariablesCheckBox_toggled(bool checked); //!< Enable/disable Variables elements based on user action.
     void on_mWellSetControlsButton_clicked(); //!< Activate Control dialog (setmodal).
     void on_mWellSetCompletionsButton_clicked(); //!< Activate Completion dialog (setmodal).
     void on_mWellSetVariablesButton_clicked(); //!< Activate Variables dialog (setmodal).

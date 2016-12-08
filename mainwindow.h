@@ -111,6 +111,8 @@ private slots:
 
 
 
+    void on_actionSave_As_triggered();
+
 private:
     Ui::MainWindow *ui;
     QFileDialog *browseFileDialog; //!< File dialog used to find the file path - output place, vgdriver path
