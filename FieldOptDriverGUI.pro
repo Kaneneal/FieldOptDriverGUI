@@ -52,7 +52,6 @@ DISTFILES += \
     newdoc.png \
     editIcon.png \
     bluepensil.png \
-    blankdoc.png \
     editicon.svg \
     Open-file.ico \
     exit.ico
