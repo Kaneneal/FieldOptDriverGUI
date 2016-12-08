@@ -1,11 +1,9 @@
 <RCC>
     <qresource prefix="/Images">
-        <file alias="save">save-icon.png</file>
-        <file alias="new">newdoc.png</file>
-        <file alias="exit">exit.ico</file>
-        <file alias="edit">editicon.svg</file>
-        <file>editIcon.png</file>
-        <file alias="pensil">bluepensil.png</file>
-        <file alias="openfile">Open-file.ico</file>
+        <file alias="pensil">Icons/bluepensil.png</file>
+        <file alias="exit">Icons/exit.ico</file>
+        <file alias="new">Icons/newdoc.png</file>
+        <file alias="openfile">Icons/Open-file.ico</file>
+        <file alias="save">Icons/save-icon.png</file>
     </qresource>
 </RCC>
