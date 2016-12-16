@@ -272,7 +272,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="optObjCompSelectedLabel">
            <property name="toolTip">
             <string>Current weighted sum component selected</string>
            </property>
@@ -282,7 +282,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="optObjItemSelectedLabel">
            <property name="minimumSize">
             <size>
              <width>0</width>

@@ -65,7 +65,7 @@ void BashDialog::on_buttonBox_rejected(){
     qDebug() << "Clicked 'Cancel' in the Bash dialog.";
     //check if output directory and json fill in, default valgt, if not give message have to fill in.. (KJØR METODE)
     resetExampleItems();
-    setBashCommandsImport(simulator_); //this worked in parameters (men,hvis ikke importert, skjer da?)
+    setBashCommandsImport(simulator_); //this worked in parameters, not have implemented a json file, there exist no object yet.
 }
 
 void BashDialog::updateSimulatorBashToUtilities(){

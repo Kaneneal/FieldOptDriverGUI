@@ -94,7 +94,7 @@ void MWellDialog::addWellBlock(){
         if ( (QString::compare(item_x->text(),uiModWell->mWellBlocksTableWidget->item(row,0)->text()) == 0 )
              && ( QString::compare(item_y->text(),uiModWell->mWellBlocksTableWidget->item(row,1)->text()) == 0)
              && ( QString::compare(item_z->text(),uiModWell->mWellBlocksTableWidget->item(row,2)->text()) == 0) ){
-           QMessageBox::information(this,"Well block already exist" , "This well block already exist. You cannot add well blocks that are already in the table.", QMessageBox::Ok, 0);
+           QMessageBox::information(this,"Well block already exists" , "This well block already exists. You cannot add well blocks that are already in the table.", QMessageBox::Ok, 0);
             return;
         }
     }

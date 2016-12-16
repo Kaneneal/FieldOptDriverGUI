@@ -78,6 +78,8 @@ void OptObjectiveDialog::on_optObjTypeComboBox_currentTextChanged(const QString 
     uiOptObjective->optObjCoeffisientLabel->setEnabled(enabler);
     uiOptObjective->optObjCoeffisientdSpinBox->setEnabled(enabler);
     uiOptObjective->optObjectiveIsFieldPropCheckBox->setEnabled(enabler);
+    uiOptObjective->optObjCompSelectedLabel->setEnabled(enabler);
+    uiOptObjective->optObjItemSelectedLabel->setEnabled(enabler);
 
     uiOptObjective->optObjectiveWellLabel->setEnabled(isWellPropEnabler);
     uiOptObjective->optObjectiveWellComboBox->setEnabled(isWellPropEnabler);
@@ -160,6 +162,7 @@ void OptObjectiveDialog::on_optObjRemoveComponentButton_clicked(){
 
 void OptObjectiveDialog::on_optObjWeightedSumListWidget_currentTextChanged(const QString &current_comp){
     //check for the current name, then update component information
+    uiOptObjective->optObjItemSelectedLabel->setText(current_comp);
     updateComponentInformation(current_comp);
 
     //use currentRowChanged instead of THIS METHOD??? currentItemChanged(&item);

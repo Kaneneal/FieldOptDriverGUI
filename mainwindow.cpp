@@ -67,10 +67,10 @@ void MainWindow::setToolTips(){
     ui->modelGridPathLine->setToolTip("Path to the model grid file");
     ui->modelGridPathEditButton->setToolTip("Edit grid path");
 
-    ui->modelControlTimesListWidget->setToolTip("List of Control times");
-    ui->modelAddControlTimeButton->setToolTip("Add control time (item) to the list");
-    ui->modelRemoveControlTimeButton->setToolTip("Remove selected control (item) time");
-    ui->modelControlTimesSpinBox->setToolTip("Control time (Integer)");
+    ui->modelControlTimesListWidget->setToolTip("List of time steps for further use in the Model(well)");
+    ui->modelAddControlTimeButton->setToolTip("Add control time step (item) to the list");
+    ui->modelRemoveControlTimeButton->setToolTip("Remove selected control (item) time step");
+    ui->modelControlTimesSpinBox->setToolTip("Control Times: Time step for further use in the Model");
 
 
     //Simulator tool tip
